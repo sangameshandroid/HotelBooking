@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="360dp"
+    android:layout_height="wrap_content"
+    android:background="#95A596"
+    android:layout_margin="10dp"
+    android:id="@+id/mainlayout">
+
+        <TextView
+
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtroomid"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:textAlignment="center"/>
+        <TextView
+
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtroomtype"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"/>
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtroomcost"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:textAlignment="center"/>
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtroomtax"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:textAlignment="center"/>
+
+</LinearLayout>

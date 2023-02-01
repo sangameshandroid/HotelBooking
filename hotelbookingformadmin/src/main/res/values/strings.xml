@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HotelBookingFormAdmin</string>
+    <string name="enter_roomtype_and_cost_below">Enter RoomType and Cost Below</string>
+    <string name="room_type">Room type</string>
+    <string name="cost">Cost</string>
+    <string name="add_room">Add room</string>
+</resources>
