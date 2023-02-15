@@ -1,30 +1,22 @@
-package com.example.roomdatabase;
+package com.example.hotelbooking;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import kotlin.text.UStringsKt;
 
-import java.io.Serializable;
-
-@Entity
-public class RoomData implements Serializable {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+public class RoomDatafir {
     private String room;
     private String cost;
     private String tax;
-    public RoomData(int id, String room, String cost, String tax){
-        this.id=id;
+
+
+    public RoomDatafir(String room, String cost, String tax){
+
         this.room=room;
         this.cost=cost;
         this.tax=tax;
     }
 
-    public int getId() {
-        return id;
-    }
+    public RoomDatafir(){
 
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getRoom() {
@@ -40,8 +32,7 @@ public class RoomData implements Serializable {
     }
 
     public void setCost(String cost) {
-        this.cost=cost;
-
+        this.cost = cost;
     }
 
     public String getTax() {

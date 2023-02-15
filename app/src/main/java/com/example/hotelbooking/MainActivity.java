@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -21,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
     Fragment fragment=null;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+    private DateFragment dateFragment = new DateFragment();
+
+
+
 
 
 
@@ -35,39 +40,50 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
         tabLayout=findViewById(R.id.tablayout);
         frameLayout=findViewById(R.id.framelayout);
 
-        fragment = new DateFragment();
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framelayout,fragment);
-        fragmentTransaction.setTransition(fragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.add(R.id.framelayout, dateFragment);
         fragmentTransaction.commit();
+
+
+
+
+
+
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getPosition()){
-                    case 0 :
-                        fragment = new DateFragment();
-                        break;
-                    case 1 :
-                        fragment =  new SelectRoomFragment();
-                        break;
-                    case 2 :
-                        fragment = new ContactFragment();
-                        break;
-                    case 3 :
-                        fragment = new PaymentFragment();
-                        break;
+                     int position = tab.getPosition();
+                    String tag = "android:switcher:" + R.id.framelayout + ":" + position;
+                     fragment = getSupportFragmentManager().findFragmentByTag(tag);
+                     if(fragment==null){
+                         switch (position){
+                             case 0 :
+                                 fragment= dateFragment;
+                                 break;
+                             case 1 :
+                                 fragment = new ContactFragment();
+                                 break;
+                             case 2 :
+                                 fragment = new SelectRoomFragment();
+                                 break;
+                             case 3 :
+                                 fragment = new PaymentFragment();
+                                 break;
+                         }
+                         getSupportFragmentManager().beginTransaction().replace(framelayout, fragment, tag).commit();
+                     }
 
-                }
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.framelayout,fragment);
-                ft.setTransition(ft.TRANSIT_FRAGMENT_OPEN);
-                ft.commit();
+
+
+
+
 
 
             }
@@ -82,7 +98,24 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        tabLayout.getTabAt(0).select();
 
     }
 
-}
+
+    /*@Override
+    public void onDataPass(String data) {
+        int position = tabLayout.getSelectedTabPosition();
+        String tag = "android:switcher:" + R.id.framelayout + ":" + 3;
+        paymentFragment = new PaymentFragment();
+        paymentFragment = (PaymentFragment) getSupportFragmentManager().findFragmentB
+
+        if (paymentFragment!=null && paymentFragment.isVisible()) {
+            paymentFragment.updateData(data);
+        }else{
+            assert fragment != null;
+            getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, paymentFragment).commit();
+            paymentFragment.updateData(data);
+        }
+    }*/
+    }

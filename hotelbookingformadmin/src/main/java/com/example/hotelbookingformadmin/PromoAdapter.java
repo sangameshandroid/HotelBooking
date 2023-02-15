@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.MyViewHolder> {
+/*public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.MyViewHolder> {
     private Context context;
     private List<PromoData> promoList;
     private PromoAdapterListener promoAdapterListener;
@@ -88,4 +88,4 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.MyViewHolder
             imgdelete = itemView.findViewById(R.id.promodelete);
         }
     }
-}
+}*/

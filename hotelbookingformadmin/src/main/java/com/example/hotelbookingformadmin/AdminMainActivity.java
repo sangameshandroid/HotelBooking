@@ -23,7 +23,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class AdminMainActivity extends AppCompatActivity {
-Button btnroom, btnpromo;
+Button btnroom, btnpromo, btn_Bookings, btn_Bookingrooms;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -32,10 +32,12 @@ Button btnroom, btnpromo;
        setContentView(R.layout.activity_admin_main);
        btnroom = findViewById(R.id.btnroom);
        btnpromo = findViewById(R.id.btnpromo);
+       btn_Bookings = findViewById(R.id.btn_Bookings);
+       btn_Bookingrooms = findViewById(R.id.btn_Bookingrooms);
        btnroom.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Intent intent = new Intent(AdminMainActivity.this, RoomManage.class);
+               Intent intent = new Intent(AdminMainActivity.this, RoomManagement.class);
                startActivity(intent);
            }
        });
@@ -46,6 +48,22 @@ Button btnroom, btnpromo;
                Intent intent = new Intent(AdminMainActivity.this, PromoActivity.class);
                startActivity(intent);
 
+           }
+       });
+
+       btn_Bookings.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(AdminMainActivity.this, BookingActivity.class);
+               startActivity(intent);
+           }
+       });
+
+       btn_Bookingrooms.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(AdminMainActivity.this, FilterRoomActivity.class);
+               startActivity(intent);
            }
        });
 

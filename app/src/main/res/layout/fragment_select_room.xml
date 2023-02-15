@@ -3,124 +3,435 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectRoomFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SelectRoomFragment"
+    android:background="#062639">
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="vertical"
-       android:layout_margin="6dp"
-       android:background="#062639">
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="vertical"
-           android:layout_margin="10dp"
-           android:layout_gravity="end">
-           <RadioGroup
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
+       android:layout_margin="5dp"
+       android:background="#062639"
+       android:id="@+id/fragment_container">
+      <androidx.recyclerview.widget.RecyclerView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+         android:id="@+id/recycler_room"/>
+
+      <LinearLayout
+          android:layout_width="210dp"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_marginTop="20dp"
+          android:layout_marginLeft="10dp"
+          android:gravity="center_vertical"
+          android:layout_marginRight="10dp"
+          android:background="@drawable/bg_layout">
+
+         <TextView
+             android:layout_width="100dp"
+             android:layout_height="25dp"
+             android:text="Price(INR)"
+             android:textColor="#062639"
+             android:textSize="15sp"
+             android:textStyle="bold"
+             android:layout_marginLeft="5dp"/>
+         <TextView
+             android:layout_width="100dp"
+             android:layout_height="wrap_content"
+             android:id="@+id/txtroom_price"
+             android:textSize="15sp"
+             android:textColor="#062639"
+             android:textAlignment="center"/>
+
+      </LinearLayout>
+      <LinearLayout
+          android:layout_width="210dp"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:gravity="center_vertical"
+          android:layout_marginTop="20dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          android:background="@drawable/bg_layout">
+
+         <TextView
+             android:layout_width="100dp"
+             android:layout_height="25dp"
+             android:text="Tax"
+             android:textColor="#062639"
+             android:textSize="15sp"
+             android:textStyle="bold"
+             android:layout_marginLeft="5dp"/>
+         <TextView
+             android:layout_width="100dp"
+             android:layout_height="wrap_content"
+             android:id="@+id/txtroom_tax"
+             android:textSize="15sp"
+             android:textColor="#062639"
+             android:textAlignment="center"/>
+
+      </LinearLayout>
+
+      <TextView
+          android:layout_width="140dp"
+          android:layout_height="wrap_content"
+         android:layout_marginTop="20dp"
+         android:layout_marginLeft="10dp"
+         android:text="Other Facilities"
+         android:textSize="18sp"
+         android:textStyle="bold"
+         android:background="@drawable/bg_add_btn"
+         android:textColor="#062639"
+          android:id="@+id/btn_others"
+          android:padding="4dp"
+          />
+
+      <LinearLayout
+          android:layout_width="210dp"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:background="#C9D6CF"
+          android:layout_marginTop="20dp"
+          android:layout_marginLeft="10dp">
+
+         <TextView
+             android:layout_width="105dp"
+             android:layout_height="wrap_content"
+             android:text="Facilities"
+             android:textColor="#062639"
+             android:textSize="16sp"
+             android:textStyle="bold"/>
+         <TextView
+             android:layout_width="105dp"
+             android:layout_height="wrap_content"
+             android:textAlignment="center"
+             android:text="Rs(INR)"
+             android:textColor="#062639"
+             android:textSize="16sp"
+             android:textStyle="bold"/>
+      </LinearLayout>
+
+
+
+
+      <LinearLayout
+          android:layout_width="210dp"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:background="#C9D6CF"
+          android:layout_marginLeft="10dp">
+
+         <CheckBox
+             android:layout_width="105dp"
+             android:layout_height="wrap_content"
+             android:id="@+id/cb_breakfast"
+             android:text="Breakfast"
+             android:textColor="#062639"
+             android:textSize="16sp"/>
+         <TextView
+             android:layout_width="105dp"
+             android:layout_height="wrap_content"
+             android:textAlignment="center"
+             android:textColor="#062639"
+             android:textSize="16sp"
+             android:id="@+id/txtbreakfast"/>
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="210dp"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:background="#C9D6CF"
+          android:layout_marginLeft="10dp">
+
+         <CheckBox
+             android:layout_width="105dp"
+             android:layout_height="wrap_content"
+             android:id="@+id/cb_laundry"
+             android:text="Laundry"
+             android:textColor="#062639"
+             android:textSize="16sp"/>
+         <TextView
+             android:layout_width="105dp"
+             android:layout_height="wrap_content"
+             android:textAlignment="center"
+             android:textColor="#062639"
+             android:textSize="16sp"
+             android:id="@+id/txtlaundry"/>
+
+
+
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="210dp"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:background="#C9D6CF"
+          android:layout_marginLeft="10dp">
+
+         <CheckBox
+             android:layout_width="105dp"
+             android:layout_height="wrap_content"
+             android:id="@+id/cb_rentalcar"
+             android:text="Rental Car"
+             android:textColor="#062639"
+             android:textSize="16sp"/>
+         <TextView
+             android:layout_width="105dp"
+             android:layout_height="wrap_content"
+             android:textAlignment="center"
+             android:textColor="#062639"
+             android:textSize="16sp"
+             android:id="@+id/txtrentalcar"/>
+
+
+
+
+      </LinearLayout>
+      <LinearLayout
+          android:layout_width="210dp"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:background="#C9D6CF"
+          android:layout_marginLeft="10dp">
+
+         <CheckBox
+             android:layout_width="105dp"
+             android:layout_height="wrap_content"
+             android:text="Assistant"
+             android:id="@+id/cb_assistant"
+             android:textColor="#062639"
+             android:textSize="16sp"/>
+         <TextView
+             android:layout_width="105dp"
+             android:layout_height="wrap_content"
+             android:textAlignment="center"
+             android:textColor="#062639"
+             android:textSize="16sp"
+             android:id="@+id/txtassistant"/>
+
+
+
+
+      </LinearLayout>
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="35dp"
+         android:text="Add"
+          android:background="@drawable/bg_add_btn"
+         android:textSize="18sp"
+         android:textColor="#062639"
+         android:textStyle="bold"
+         android:id="@+id/btn_add"
+          android:layout_marginLeft="10dp"/>
+     <LinearLayout
+         android:layout_width="210dp"
+         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+         android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_layout"
+         android:layout_marginTop="20dp"
+         android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+           android:text="Total Payable"
+           android:textColor="#062639"
+           android:textSize="16sp"
+           android:padding="4dp"/>
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+           android:textSize="16sp"
+           android:textColor="#062639"
+            android:textAlignment="textStart"
+           android:id="@+id/txttotal"/>
+
+
+     </LinearLayout>
+<TextView
+    android:layout_width="140dp"
+    android:layout_height="wrap_content"
+   android:background="@drawable/bg_add_btn"
+   android:layout_marginLeft="10dp"
+   android:text="Apply Promo"
+   android:textSize="18sp"
+   android:textStyle="bold"
+   android:textColor="#062639"
+    android:padding="5dp"/>
+      <androidx.cardview.widget.CardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+         android:layout_margin="5dp"
+          app:contentPadding="10dp"
+          android:id="@+id/cardview1">
+         <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+             android:orientation="horizontal"
+             android:background="@drawable/bg_layout"
+             android:gravity="center_vertical">
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:id="@+id/Radiogrouppromo1">
                <RadioButton
-                   android:layout_width="match_parent"
+                   android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="Standard                      $21"
-                   android:textSize="20sp"
-                   android:textStyle="bold"
-                   android:textColor="@color/white"
-                   android:padding="10dp"/>
-           </RadioGroup>
-           <RadioGroup
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
-               <RadioButton
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:text="Deluxe                          $29"
-                   android:textSize="20sp"
-                   android:textStyle="bold"
-                   android:textColor="@color/white"
-                   android:padding="10dp"/>
-           </RadioGroup>
-           <RadioGroup
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
-               <RadioButton
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:text="Super Deluxe              $35"
-                   android:textSize="20sp"
-                   android:textStyle="bold"
-                   android:textColor="@color/white"
-                   android:padding="10dp"/>
-           </RadioGroup>
-           <Button
-               android:layout_width="150dp"
-               android:layout_height="wrap_content"
-               android:text="Select Details"
-               android:textStyle="bold"
+                  android:text="New25"
+                   android:id="@+id/btn_radio1"
+                  android:textSize="18sp"
+                  android:textStyle="bold"
+                  android:textColor="#062639"/>
+
+            </RadioGroup>
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="25"
+                android:id="@+id/txtpromo1"
+               android:textSize="18sp"
                android:textColor="#062639"
-               android:layout_gravity="end"/>
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:id="@+id/txtfacilites"
-               android:text="Other Facilities"
-               android:textColor="@color/white"
-               android:textSize="20sp"
-               android:textStyle="bold"
-               android:padding="15dp"/>
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_margin="10dp"
-               android:orientation="horizontal">
-               <TextView
-                   android:layout_width="180dp"
+               android:textAlignment="center"
+               android:layout_marginLeft="70dp"
+                />
+
+         </LinearLayout>
+      </androidx.cardview.widget.CardView>
+      <androidx.cardview.widget.CardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          app:contentPadding="10dp"
+          android:id="@+id/cardview2">
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="horizontal"
+             android:background="@drawable/bg_layout"
+             android:gravity="center_vertical">
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Radiogrouppromo2">
+               <RadioButton
+                   android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="Breakfast  -   $5"
+                   android:text="DIWALI30"
+                   android:id="@+id/btn_radio2"
                    android:textSize="18sp"
-                   android:textColor="@color/white"
-                   android:textStyle="bold"/>
-               <CheckBox
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content" />
+                   android:textStyle="bold"
+                   android:textColor="#062639"/>
 
-           </LinearLayout>
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_margin="10dp"
-               android:orientation="horizontal">
-               <TextView
-                   android:layout_width="180dp"
+            </RadioGroup>
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="30"
+                android:textSize="18sp"
+                android:textColor="#062639"
+                android:textAlignment="center"
+                android:layout_marginLeft="46dp"
+                android:id="@+id/txtpromo2"/>
+
+         </LinearLayout>
+      </androidx.cardview.widget.CardView>
+      <androidx.cardview.widget.CardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="5dp"
+          app:contentPadding="10dp"
+          android:id="@+id/cardview3">
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="horizontal"
+             android:background="@drawable/bg_layout"
+             android:gravity="center_vertical">
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Radiogrouppromo3">
+               <RadioButton
+                   android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="Rental Car  -  $15"
+                   android:text="VALENTINE50"
                    android:textSize="18sp"
-                   android:textColor="@color/white"
-                   android:textStyle="bold"/>
-               <CheckBox
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"/>
+                   android:textStyle="bold"
+                   android:id="@+id/btn_radio3"
+                   android:textColor="#062639"/>
 
-           </LinearLayout>
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_margin="10dp"
-               android:orientation="horizontal">
-               <TextView
-                   android:layout_width="180dp"
-                   android:layout_height="wrap_content"
-                   android:text="Laundry  -      $7"
-                   android:textSize="18sp"
-                   android:textColor="@color/white"
-                   android:textStyle="bold"/>
-               <CheckBox
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="50"
+                android:textSize="18sp"
+                android:textColor="#062639"
+                android:textAlignment="center"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/txtpromo3"/>
 
-           </LinearLayout>
+         </LinearLayout>
+      </androidx.cardview.widget.CardView>
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="35dp"
+          android:text="Apply"
+          android:background="@drawable/bg_add_btn"
+          android:textSize="18sp"
+          android:textColor="#062639"
+          android:textStyle="bold"
+          android:id="@+id/btn_applypromo"
+          android:layout_marginLeft="10dp"/>
 
-       </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="230dp"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_marginBottom="20dp"
+          android:background="@drawable/bg_layout"
+          android:layout_marginTop="20dp"
+          android:layout_marginLeft="10dp">
+
+         <TextView
+             android:layout_width="150dp"
+             android:layout_height="wrap_content"
+             android:text="Net Payable(Rs /-)"
+             android:textColor="#062639"
+             android:textSize="16sp"
+             android:padding="4dp"/>
+         <TextView
+             android:layout_width="80dp"
+             android:layout_height="wrap_content"
+             android:textSize="16sp"
+             android:textColor="#062639"
+             android:textAlignment="textStart"
+             android:id="@+id/txtnettotal"/>
+
+
+      </LinearLayout>
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="35dp"
+          android:text="Book Now"
+          android:padding="5dp"
+          android:background="@drawable/bg_add_btn"
+          android:textSize="18sp"
+          android:textColor="#062639"
+          android:textStyle="bold"
+          android:id="@+id/btn_Booknow"
+          android:layout_marginLeft="10dp"
+          android:layout_marginBottom="10dp"/>
+
+
+
+
    </LinearLayout>
 
 

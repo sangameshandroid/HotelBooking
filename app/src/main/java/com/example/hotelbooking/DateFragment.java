@@ -13,14 +13,20 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,15 +38,21 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class DateFragment extends Fragment {
     EditText edcheckin, edcheckout;
     TextView txtduration, txtnoofrooms, txtroonno, txtadultno, txtchildno, txtadult, txtchild;
-    Button btnadd, btnsubtract, btnadd2, btnsubtract2, btnadd3, btnsubtract3;
+    Button btnadd, btnsubtract, btnadd2, btnsubtract2, btnadd3, btnsubtract3, selectrooms;
     Calendar mycalender;
     DatePickerDialog.OnDateSetListener dateSetListener1, dateSetListener2;
 
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -69,6 +81,7 @@ public class DateFragment extends Fragment {
         btnsubtract2 = view.findViewById(R.id.btnsubtract2);
         btnadd3 = view.findViewById(R.id.btnadd3);
         btnsubtract3 = view.findViewById(R.id.btnsubtract3);
+        selectrooms = view.findViewById(R.id.selectRooms);
         txtroonno.setText("1");
         txtadultno.setText("1");
         txtchildno.setText("1");
@@ -81,62 +94,78 @@ public class DateFragment extends Fragment {
 
             @Override
           public void onClick(View view) {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), android.R.style.Theme_Holo_Light_Dialog_MinWidth, dateSetListener1, year, month, day);
-           datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                                             datePickerDialog.show();
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                // Set the selected date in the EditText
+                                String checkinDate = String.format("%02d/%02d/%04d", dayOfMonth, month+1, year);
+                                edcheckin.setText(checkinDate);
+                            }
+                        }, year, month, day);
+                datePickerDialog.show();
                                          }
                                      });
-        dateSetListener1 = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month = month+1;
-                String date = day + "/" + month + "/" + year;
-                edcheckin.setText(date);
-            }
-        };
+
 
 
         edcheckout.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), android.R.style.Theme_Holo_Light_Dialog_MinWidth, dateSetListener2, year, month, day);
-                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                // Set the selected date in the EditText
+                                String checkoutDate = String.format("%02d/%02d/%04d", dayOfMonth, month+1, year);
+                                edcheckout.setText(checkoutDate);
+                            }
+                        }, year, month, day);
                 datePickerDialog.show();
             }
         });
-        dateSetListener2 = new DatePickerDialog.OnDateSetListener() {
+
+        edcheckout.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month = month+1;
-                String date = day + "/" + month + "/" + year;
-                edcheckout.setText(date);
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
-        };
 
-        String sdate = edcheckin.getText().toString();
-        String edate = edcheckout.getText().toString();
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-        try {
-            Date date1 = sdf.parse(sdate);
-            Date date2 = sdf.parse(edate);
-
-            long startdate = date1.getTime();
-            long enddate = date2.getTime();
-
-            if(startdate <= enddate){
-                Period period = new Period(startdate, enddate, PeriodType.yearMonthDay());
-                    int years = period.getYears();
-                    int months = period.getMonths();
-                    int days = period.getDays();
-                    txtduration.setText(String.valueOf(days));
-
-            }else{
-                Toast.makeText(getActivity(), "Checkout date must be higher than checkin date", Toast.LENGTH_SHORT).show();
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void afterTextChanged(Editable s) {
+                String dateStr1 = edcheckin.getText().toString();
+                String dateStr2 = edcheckout.getText().toString();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    Date date1 = sdf.parse(dateStr1);
+                    Date date2 = sdf.parse(dateStr2);
+                    long diffInMs = date2.getTime() - date1.getTime();
+                    long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMs);
+                    txtduration.setText(diffInDays + " days");
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            });
+
+
 
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,6 +237,36 @@ public class DateFragment extends Fragment {
             }
         });
 
+        selectrooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String checkin = edcheckin.getText().toString();
+                String checkout = edcheckout.getText().toString();
+                int rooms = Integer.parseInt(txtroonno.getText().toString());
+                int adults = Integer.parseInt(txtadultno.getText().toString());
+                int childs = Integer.parseInt(txtchildno.getText().toString());
+
+                Bundle bundle = new Bundle();
+                bundle.putString("checkin", checkin);
+                bundle.putString("checkout", checkout);
+                bundle.putInt("rooms", rooms);
+                bundle.putInt("adults", adults);
+                bundle.putInt("childs", childs);
+
+                SelectRoomFragment selectRoomFragment = new SelectRoomFragment();
+                selectRoomFragment.setArguments(bundle);
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout, selectRoomFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
+
+
+
 
         return view;
 
@@ -222,5 +281,23 @@ public class DateFragment extends Fragment {
             return (int) ((edate.getTime() - sdate.getTime()) / (1000 * 60 * 60 * 24));
         }
     }
+
+    public String getCheckin(){
+        return edcheckin.getText().toString();
+    }
+    public String getCheckout(){
+        return edcheckout.getText().toString();
+    }
+
+    public int getRoomno(){
+        return Integer.parseInt(txtroonno.getText().toString());
+    }
+    public int getAdultno(){
+        return Integer.parseInt(txtadultno.getText().toString());
+    }
+    public int getChildno(){
+        return Integer.parseInt(txtchildno.getText().toString());
+    }
+
 
 }

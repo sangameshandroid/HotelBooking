@@ -9,7 +9,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hotelbooking">
         <activity
+            android:name=".FilterRoomActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <meta-data
+            android:name="android.app.lib_name"
+            android:value="" />
+
+        <activity
             android:name=".UpdateActivity2"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".BookingActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -23,14 +42,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".RoomManage"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".UpdateActivity"
+            android:name=".RoomManagement"
             android:exported="false" />
         <activity
             android:name=".AdminMainActivity"

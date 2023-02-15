@@ -14,24 +14,24 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class PromoActivity extends AppCompatActivity implements PromoAdapterListener {
+public class PromoActivity extends AppCompatActivity  {
     EditText edpromoid, edpromocode, edpromodiscount;
     Button btnaddpromo;
     RecyclerView promorecycler;
-    private PromoDB promoDB;
+    /*private PromoDB promoDB;
     private PromoDao promoDao;
-    private PromoAdapter promoAdapter;
+    private PromoAdapter promoAdapter;*/
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promo);
 
-        promoDB = PromoDB.getInstance(this);
+       /* promoDB = PromoDB.getInstance(this);
         promoDao = promoDB.getPromoDao();
 
-        promoAdapter = new PromoAdapter(this, this);
+        promoAdapter = new PromoAdapter(this, this);*/
 
 
 
@@ -41,9 +41,9 @@ public class PromoActivity extends AppCompatActivity implements PromoAdapterList
         btnaddpromo = findViewById(R.id.btnaddpromo);
         promorecycler = findViewById(R.id.promorecycler);
 
-        promoAdapter = new PromoAdapter(this, this);
+       /* promoAdapter = new PromoAdapter(this, this);
         promorecycler.setAdapter(promoAdapter);
-        promorecycler.setLayoutManager(new LinearLayoutManager(this));
+        promorecycler.setLayoutManager(new LinearLayoutManager(this));*/
 
 
         btnaddpromo.setOnClickListener(new View.OnClickListener() {
@@ -52,9 +52,9 @@ public class PromoActivity extends AppCompatActivity implements PromoAdapterList
                 String promoid = edpromoid.getText().toString();
                 String promocode = edpromocode.getText().toString();
                 String promodiscount = edpromodiscount.getText().toString();
-                PromoData promoData = new PromoData(0,promoid,promocode,promodiscount);
+                /*PromoData promoData = new PromoData(0,promoid,promocode,promodiscount);
                 promoAdapter.addPromo(promoData);
-                promoDao.insert(promoData);
+                promoDao.insert(promoData);*/
                 edpromoid.setText("");
                 edpromocode.setText("");
                 edpromodiscount.setText("");
@@ -66,16 +66,16 @@ public class PromoActivity extends AppCompatActivity implements PromoAdapterList
 
 
     }
-    private void fetchPromoData(){
+   /* private void fetchPromoData(){
         promoAdapter.clearPromo();
         List<PromoData> promoList = promoDao.getPromoData();
         for(int i=0;i<promoList.size();i++){
             PromoData promoData = promoList.get(i);
             promoAdapter.addPromo(promoData);
         }
-    }
+    }*/
 
-    @Override
+   /* @Override
     public void PromoUpdate(PromoData promoData) {
         Intent intent = new Intent(this, UpdateActivity2.class);
         intent.putExtra("mod", promoData);
@@ -94,5 +94,5 @@ public class PromoActivity extends AppCompatActivity implements PromoAdapterList
     protected void onResume() {
         super.onResume();
         fetchPromoData();
-    }
+    }*/
 }

@@ -1,20 +1,6 @@
 package com.example.hotelbookingformadmin;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> {
+/*public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> {
     private Context context;
     private List<RoomData> roomDataList;
     private AdapterListener adapterListener;
@@ -87,4 +73,4 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
 
         }
     }
-}
+}*/

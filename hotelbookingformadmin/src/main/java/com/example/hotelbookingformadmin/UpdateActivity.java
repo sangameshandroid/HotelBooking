@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+/*
 public class UpdateActivity extends AppCompatActivity {
     private EditText edroom2,edcost2, edtax2;
     private Button btnupdate;
@@ -20,7 +20,7 @@ public class UpdateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
-        roomDB = RoomDB.getInstance(this);
+        roomDB = DatabaseAdmin.getInstance(this);
         roomDao = roomDB.getDao();
 
 
@@ -46,4 +46,4 @@ public class UpdateActivity extends AppCompatActivity {
         });
 
     }
-}
+}*/
