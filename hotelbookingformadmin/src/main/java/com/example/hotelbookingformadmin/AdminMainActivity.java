@@ -23,7 +23,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class AdminMainActivity extends AppCompatActivity {
-Button btnroom, btnpromo, btn_Bookings, btn_Bookingrooms;
+Button btnroom, btnpromo, btn_Bookings, btn_Bookingrooms, btn_Bookingname;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -34,6 +34,7 @@ Button btnroom, btnpromo, btn_Bookings, btn_Bookingrooms;
        btnpromo = findViewById(R.id.btnpromo);
        btn_Bookings = findViewById(R.id.btn_Bookings);
        btn_Bookingrooms = findViewById(R.id.btn_Bookingrooms);
+       btn_Bookingname = findViewById(R.id.btn_Bookingname);
        btnroom.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -63,6 +64,14 @@ Button btnroom, btnpromo, btn_Bookings, btn_Bookingrooms;
            @Override
            public void onClick(View v) {
                Intent intent = new Intent(AdminMainActivity.this, FilterRoomActivity.class);
+               startActivity(intent);
+           }
+       });
+
+       btn_Bookingname.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(AdminMainActivity.this, NameFilterActivity.class);
                startActivity(intent);
            }
        });

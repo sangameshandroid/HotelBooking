@@ -287,17 +287,27 @@ public class SelectRoomFragment extends Fragment {
 
               Bundle bundle = getArguments();
               if(bundle!=null){
-                 String checkin= bundle.getString("checkin");
-                  String checkout= bundle.getString("checkout");
-                  int rooms= bundle.getInt("rooms");
-                  int adults=bundle.getInt("adults");
-                  int childs=bundle.getInt("childs");
+                 String checkindate = bundle.getString("checkindate");
+                  String checkoutdate = bundle.getString("checkoutdate");
+                  int room1= bundle.getInt("room1");
+                  int adult1=bundle.getInt("adult1");
+                  int child1=bundle.getInt("child1");
+                  String firstname = bundle.getString("fname");
+                  String lasttname = bundle.getString("lname");
+                  String email = bundle.getString("email");
+                  String address = bundle.getString("address");
+                  String phone = bundle.getString("phone");
 
-                  intent.putExtra("checkindate", checkin);
-                  intent.putExtra("checkoutdate", checkout);
-                  intent.putExtra("roomsno", rooms);
-                  intent.putExtra("adultsno", adults);
-                  intent.putExtra("childsno", childs);
+                  intent.putExtra("checkindate1", checkindate);
+                  intent.putExtra("checkoutdate1", checkoutdate);
+                  intent.putExtra("room2", room1);
+                  intent.putExtra("adult2", adult1);
+                  intent.putExtra("child2", child1);
+                  intent.putExtra("firstname", firstname);
+                  intent.putExtra("lastname", lasttname);
+                  intent.putExtra("email1", email);
+                  intent.putExtra("address1", address);
+                  intent.putExtra("phone1", phone);
               }
 
 

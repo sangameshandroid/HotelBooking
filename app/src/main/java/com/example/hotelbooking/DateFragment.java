@@ -254,11 +254,11 @@ public class DateFragment extends Fragment {
                 bundle.putInt("adults", adults);
                 bundle.putInt("childs", childs);
 
-                SelectRoomFragment selectRoomFragment = new SelectRoomFragment();
-                selectRoomFragment.setArguments(bundle);
+                ContactFragment contactFragment = new ContactFragment();
+                contactFragment.setArguments(bundle);
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.framelayout, selectRoomFragment);
+                fragmentTransaction.replace(R.id.framelayout, contactFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 

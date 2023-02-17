@@ -47,13 +47,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_margin="10dp">
+
             <EditText
                 android:id="@+id/editfirstname"
                 android:layout_width="175dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:textAlignment="textStart"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textAlignment="textStart"/>
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/editlastname"
@@ -182,7 +183,9 @@
             <Button
                 android:layout_width="175dp"
                 android:layout_height="wrap_content"
-                android:text="@string/make_payment"
+                android:text="Select Rooms
+"
+                android:id="@+id/btn_selectrooms"
                 android:textSize="20sp"
                 android:textColor="#062639"/>
         </LinearLayout>

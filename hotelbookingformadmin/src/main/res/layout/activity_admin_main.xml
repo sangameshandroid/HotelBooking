@@ -57,6 +57,15 @@
             android:textAlignment="center"
             android:paddingTop="10dp"
             android:id="@+id/btn_Bookingrooms"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bookings(namevise)"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:paddingTop="10dp"
+            android:id="@+id/btn_Bookingname"/>
 
 
     </LinearLayout>
