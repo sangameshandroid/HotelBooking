@@ -158,7 +158,7 @@ public class DateFragment extends Fragment {
                     Date date2 = sdf.parse(dateStr2);
                     long diffInMs = date2.getTime() - date1.getTime();
                     long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMs);
-                    txtduration.setText(diffInDays + " days");
+                    txtduration.setText(diffInDays + " nights");
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

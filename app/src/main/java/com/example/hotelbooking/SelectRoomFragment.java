@@ -318,7 +318,7 @@ public class SelectRoomFragment extends Fragment {
                 int selectedid2 = radiogrouppromo2.getCheckedRadioButtonId();
                 RadioButton selectedradio2 = view.findViewById(selectedid2);
 
-                int selectedid3 = radiogrouppromo1.getCheckedRadioButtonId();
+                int selectedid3 = radiogrouppromo3.getCheckedRadioButtonId();
                 RadioButton selectedradio3 = view.findViewById(selectedid3);
 
                 String selectedradiobuttontext = "";

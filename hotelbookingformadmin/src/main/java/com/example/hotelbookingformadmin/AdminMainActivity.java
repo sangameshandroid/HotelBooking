@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Connection;
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 
 public class AdminMainActivity extends AppCompatActivity {
 Button btnroom, btnpromo, btn_Bookings, btn_Bookingrooms, btn_Bookingname;
+TextView txt_useremail, txt_logout;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -35,6 +39,30 @@ Button btnroom, btnpromo, btn_Bookings, btn_Bookingrooms, btn_Bookingname;
        btn_Bookings = findViewById(R.id.btn_Bookings);
        btn_Bookingrooms = findViewById(R.id.btn_Bookingrooms);
        btn_Bookingname = findViewById(R.id.btn_Bookingname);
+       txt_useremail = findViewById(R.id.txt_useremail);
+       txt_logout = findViewById(R.id.txt_logout);
+
+
+       Intent intentlog = getIntent();
+       String email = intentlog.getStringExtra("email");
+       txt_useremail.setText(email);
+
+
+       txt_logout.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(AdminMainActivity.this, LoginActivity.class);
+
+               new AlertDialog.Builder(AdminMainActivity.this).setMessage("Are you sure you want to logout")
+                       .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialog, int which) {
+                               startActivity(intent);
+
+                           }
+                       }) .setNegativeButton("No", null).show();
+           }
+       });
        btnroom.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {

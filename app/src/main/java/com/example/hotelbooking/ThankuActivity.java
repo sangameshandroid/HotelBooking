@@ -63,10 +63,10 @@ public class ThankuActivity extends AppCompatActivity {
         txt_adults.setText(String.valueOf(Adultno));
         txt_children.setText(String.valueOf(Childno));
         txt_promo.setText(Promo);
-        txt_extracharge.setText(Extracharge + "/-");
+        txt_extracharge.setText(Extracharge);
         txt_discount.setText(Discount);
         txt_extra.setText(Extrafacility);
-        txt_netamount.setText(Netpay + "/-");
+        txt_netamount.setText(Netpay);
 
 
 
