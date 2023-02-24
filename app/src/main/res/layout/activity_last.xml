@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="First Name"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_fname"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -71,20 +71,21 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             >
+
             <TextView
                 android:layout_width="130dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:padding="5dp"
                 android:text="Last Name"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
             <TextView
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_lname"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -104,7 +105,7 @@
                 android:layout_height="match_parent"
                 android:padding="5dp"
                 android:text="Email"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold" />
             <TextView
@@ -112,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_email"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -131,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Phone"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
@@ -139,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_phone"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -158,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Address"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
@@ -166,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_address"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -186,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Check-in"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
@@ -194,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_checkin"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -214,7 +215,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Check-out"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
@@ -222,7 +223,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_checkout"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -242,7 +243,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="RoomType"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
@@ -250,7 +251,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_roomtype"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -269,7 +270,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Rooms"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
@@ -277,7 +278,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_Roomno"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -296,7 +297,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Adults"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
@@ -304,7 +305,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_adults"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -323,7 +324,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Children"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
@@ -331,7 +332,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_children"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -350,7 +351,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Applied Promo"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
@@ -358,7 +359,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_promo"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -377,7 +378,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Discount(%)"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
@@ -385,7 +386,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_discount"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -404,7 +405,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Extra Facilities"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
@@ -412,7 +413,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_extra"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -431,7 +432,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Extracharge"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
@@ -439,7 +440,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_extracharge"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -458,7 +459,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="Net Payable"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
             <TextView
@@ -466,7 +467,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:id="@+id/txt_netamount"
-                android:textColor="#062639"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -484,7 +485,7 @@
             android:textStyle="bold"
             android:padding="5dp"
             android:id="@+id/btn_paynow"
-            />
+            android:layout_margin="10dp"/>
 
 
     </LinearLayout>

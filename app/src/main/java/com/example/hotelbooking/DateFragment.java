@@ -1,16 +1,9 @@
 package com.example.hotelbooking;
 
-import static android.widget.ArrayAdapter.*;
-
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.bluetooth.le.PeriodicAdvertisingParameters;
-import android.content.PeriodicSync;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -21,28 +14,20 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.joda.time.Period;
-import org.joda.time.PeriodType;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class DateFragment extends Fragment {
-    EditText edcheckin, edcheckout;
+    EditText edcheckin, edcheckout, edbooking;
     TextView txtduration, txtnoofrooms, txtroonno, txtadultno, txtchildno, txtadult, txtchild;
     Button btnadd, btnsubtract, btnadd2, btnsubtract2, btnadd3, btnsubtract3, selectrooms;
     Calendar mycalender;
@@ -82,12 +67,37 @@ public class DateFragment extends Fragment {
         btnadd3 = view.findViewById(R.id.btnadd3);
         btnsubtract3 = view.findViewById(R.id.btnsubtract3);
         selectrooms = view.findViewById(R.id.selectRooms);
+        edbooking = view.findViewById(R.id.edbooking);
         txtroonno.setText("1");
         txtadultno.setText("1");
         txtchildno.setText("1");
         txtadult.setText("1");
         txtchild.setText("1");
         txtnoofrooms.setText("1");
+
+
+        edbooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                // Set the selected date in the EditText
+                                String bookingDate = String.format("%02d/%02d/%04d", dayOfMonth, month+1, year);
+                                edbooking.setText(bookingDate);
+                            }
+                        }, year, month, day);
+                datePickerDialog.show();
+
+            }
+        });
 
 
         edcheckin.setOnClickListener(new View.OnClickListener() {
@@ -243,6 +253,7 @@ public class DateFragment extends Fragment {
 
                 String checkin = edcheckin.getText().toString();
                 String checkout = edcheckout.getText().toString();
+                String booking = edbooking.getText().toString();
                 int rooms = Integer.parseInt(txtroonno.getText().toString());
                 int adults = Integer.parseInt(txtadultno.getText().toString());
                 int childs = Integer.parseInt(txtchildno.getText().toString());
@@ -254,13 +265,21 @@ public class DateFragment extends Fragment {
                 bundle.putInt("adults", adults);
                 bundle.putInt("childs", childs);
 
-                ContactFragment contactFragment = new ContactFragment();
-                contactFragment.setArguments(bundle);
-                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.framelayout, contactFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                boolean checkfields = validFields(checkin, checkout, booking);
+                if (checkfields == true){
+                    ContactFragment contactFragment = new ContactFragment();
+                    contactFragment.setArguments(bundle);
+                    FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.framelayout, contactFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+
+                } else{
+                    Toast.makeText(getContext(), "Fields should not be empty", Toast.LENGTH_SHORT).show();
+                }
+
+
 
             }
         });
@@ -271,6 +290,24 @@ public class DateFragment extends Fragment {
         return view;
 
     }
+
+    private boolean validFields(String checkin, String checkout, String booking) {
+        if (checkin.length()==0){
+            edcheckin.requestFocus();
+            edcheckin.setError("Field Not be empty");
+            return false;
+        } else if (checkout.length()==0){
+            edcheckout.requestFocus();
+            edcheckout.setError("Field not be empty");
+            return false;
+        } else if (booking.length()==0){
+            edbooking.requestFocus();
+            edbooking.setError("Field not be empty");
+            return false;
+        }
+        return true;
+    }
+
     public static int getDaysDifference(Date sdate, Date edate){
         if(sdate==null||edate==null){
             return 0;

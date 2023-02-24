@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ThankuActivity extends AppCompatActivity {
     private TextView txt_fname, txt_lname, txt_email, txt_phone, txt_address, txt_roomtype, txt_checkin, txt_checkout, txt_roono, txt_adults, txt_children, txt_netamount, txt_discount, txt_extra, txt_extracharge, txt_promo;
+    private Button btn_exit, btn_logout;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -31,6 +35,23 @@ public class ThankuActivity extends AppCompatActivity {
         txt_extracharge = findViewById(R.id.txt_extracharge);
         txt_promo = findViewById(R.id.txt_promo);
         txt_discount = findViewById(R.id.txt_discount);
+        btn_exit = findViewById(R.id.btn_exit);
+        btn_logout = findViewById(R.id.btn_logout);
+
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ThankuActivity.this,LoginActivity.class));
+            }
+        });
+
+        btn_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ThankuActivity.this, "Thank You For Booking, Visit again", Toast.LENGTH_SHORT).show();
+               // startActivity(new Intent(ThankuActivity.this,LoginActivity.class));
+            }
+        });
 
 
         Intent intent = getIntent();

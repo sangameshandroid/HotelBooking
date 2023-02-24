@@ -9,6 +9,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Light">
         <activity
+            android:name=".UpdateRoomActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".RegistermessageActivity"
             android:exported="false">
             <meta-data

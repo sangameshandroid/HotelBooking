@@ -54,14 +54,20 @@
                 android:layout_height="match_parent"
                 android:textAlignment="textStart"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:inputType="textPersonName"
+                android:hint="Enter Name"
+                android:textColorHint="#B3B6B7"/>
 
             <EditText
                 android:id="@+id/editlastname"
                 android:layout_width="175dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
+                android:inputType="textPersonName"
                 android:textSize="20sp"
+                android:hint="Enter Last Name"
+                android:textColorHint="#B3B6B7"
                 android:textAlignment="textStart"/>
         </LinearLayout>
         <LinearLayout
@@ -88,8 +94,11 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editemail"
+                android:inputType="textEmailAddress"
                 android:textAlignment="textStart"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:hint="Enter Email"
+                android:textColorHint="#B3B6B7"/>
 
         </LinearLayout>
         <LinearLayout
@@ -117,7 +126,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editaddress"
                 android:textSize="20sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:hint="Enter Home Address"
+                android:textColorHint="#B3B6B7"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="350dp"
@@ -142,9 +153,12 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editpostcode"
+                android:inputType="number"
                 android:textSize="20sp"
                 android:textAlignment="textStart"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:hint="Enter Post Code"
+                android:textColorHint="#B3B6B7"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="350dp"
@@ -171,7 +185,10 @@
                 android:id="@+id/editphone"
                 android:textSize="20sp"
                 android:textColor="@color/white"
-                android:textAlignment="textStart"/>
+                android:textAlignment="textStart"
+                android:inputType="phone"
+                android:hint="Enter Mobile Number"
+                android:textColorHint="#B3B6B7"/>
         </LinearLayout>
 
         <LinearLayout
@@ -183,10 +200,11 @@
             <Button
                 android:layout_width="175dp"
                 android:layout_height="wrap_content"
-                android:text="Select Rooms
-"
+                android:text="Select Rooms"
+                android:layout_margin="10dp"
                 android:id="@+id/btn_selectrooms"
                 android:textSize="20sp"
+                android:background="@drawable/bg_add_btn"
                 android:textColor="#062639"/>
         </LinearLayout>
     </LinearLayout>

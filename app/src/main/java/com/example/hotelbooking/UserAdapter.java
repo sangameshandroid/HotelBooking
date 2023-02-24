@@ -19,7 +19,7 @@ import java.util.List;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
     private Context context;
-    private List<RoomDatafir> list;
+    private List<RoomTypefir> list;
     private SelectRoomFragment fragment;
     private int selectedposition = -1;
     private OnRadioButtonSelectedListener listener;
@@ -34,7 +34,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     }
 
-    public void setData(List<RoomDatafir> list) {
+    public void setData(List<RoomTypefir> list) {
         this.list = list;
         notifyDataSetChanged();
 
@@ -55,7 +55,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        RoomDatafir rdf = list.get(position);
+        RoomTypefir rdf = list.get(position);
         holder.radio_room.setText(rdf.getRoom());
         holder.txt_cost.setText(rdf.getCost());
         holder.txt_tax.setText(rdf.getTax());

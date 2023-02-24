@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_Room"
+        android:padding="3dp"
+        android:textSize="16sp"
+        />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_Cost"
+        android:padding="3dp"
+        android:textSize="16sp"
+        />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_Tax"
+        android:padding="3dp"
+        android:textSize="16sp"
+        />
+
+
+
+</LinearLayout>

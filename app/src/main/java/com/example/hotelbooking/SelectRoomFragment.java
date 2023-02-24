@@ -38,7 +38,7 @@ public class SelectRoomFragment extends Fragment {
     private UserAdapter userAdapter;
     RecyclerView recyclerView;
     DatabaseReference db;
-    List<RoomDatafir> list;
+    List<RoomTypefir> list;
     TextView txtroom_price;
     TextView txtroom_tax;
     TextView txtbreakfast;
@@ -117,13 +117,13 @@ public class SelectRoomFragment extends Fragment {
         list = new ArrayList<>();
 
 
-        db = FirebaseDatabase.getInstance().getReference();
+        db = FirebaseDatabase.getInstance().getReference("RoomDatabase");
 
-        db.child("RoomDatafir").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        db.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 for (DataSnapshot snap:task.getResult().getChildren()) {
-                    RoomDatafir rdf = snap.getValue(RoomDatafir.class);
+                    RoomTypefir rdf = snap.getValue(RoomTypefir.class);
                     list.add(rdf);
                     userAdapter.setData(list);
                     recyclerView.setAdapter(userAdapter);
@@ -274,7 +274,7 @@ public class SelectRoomFragment extends Fragment {
         userAdapter.setOnRadioButtonSelectedListener(new UserAdapter.OnRadioButtonSelectedListener() {
             @Override
             public void onRadioButtonSelected(int position) {
-                RoomDatafir rdf = list.get(position);
+                RoomTypefir rdf = list.get(position);
                 String selectText = rdf.getRoom();
                 Toast.makeText(getContext(), "Selected: " + selectText, Toast.LENGTH_SHORT).show();
             }
@@ -374,7 +374,7 @@ public class SelectRoomFragment extends Fragment {
 
                 int selectedPosition = userAdapter.getSelectedposition();
                 if (selectedPosition != -1) {
-                    RoomDatafir rdf = list.get(selectedPosition);
+                    RoomTypefir rdf = list.get(selectedPosition);
                     String selectedradiotext = rdf.getRoom();
                     intent.putExtra("selectedradiotext", selectedradiotext);
                 } else {
