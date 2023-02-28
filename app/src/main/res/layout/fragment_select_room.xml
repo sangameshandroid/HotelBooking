@@ -13,10 +13,18 @@
        android:layout_margin="5dp"
        android:background="#062639"
        android:id="@+id/fragment_container">
-      <androidx.recyclerview.widget.RecyclerView
+      <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-         android:id="@+id/recycler_room"/>
+         android:orientation="vertical"
+         android:background="@drawable/bg_layout">
+         <androidx.recyclerview.widget.RecyclerView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/recycler_room"/>
+
+      </LinearLayout>
+
 
       <LinearLayout
           android:layout_width="210dp"
@@ -120,7 +128,6 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="horizontal"
-          android:background="#C9D6CF"
           android:layout_marginLeft="10dp">
 
          <CheckBox
@@ -128,13 +135,13 @@
              android:layout_height="wrap_content"
              android:id="@+id/cb_breakfast"
              android:text="Breakfast"
-             android:textColor="#062639"
+             android:textColor="#FFFFFF"
              android:textSize="16sp"/>
          <TextView
              android:layout_width="105dp"
              android:layout_height="wrap_content"
              android:textAlignment="center"
-             android:textColor="#062639"
+             android:textColor="#FFFFFF"
              android:textSize="16sp"
              android:layout_marginLeft="80dp"
              android:id="@+id/txtbreakfast"/>
@@ -144,7 +151,6 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="horizontal"
-          android:background="#C9D6CF"
           android:layout_marginLeft="10dp">
 
          <CheckBox
@@ -152,13 +158,13 @@
              android:layout_height="wrap_content"
              android:id="@+id/cb_laundry"
              android:text="Laundry"
-             android:textColor="#062639"
+             android:textColor="#FFFFFF"
              android:textSize="16sp"/>
          <TextView
              android:layout_width="105dp"
              android:layout_height="wrap_content"
              android:textAlignment="center"
-             android:textColor="#062639"
+             android:textColor="#FFFFFF"
              android:textSize="16sp"
              android:layout_marginLeft="80dp"
              android:id="@+id/txtlaundry"/>
@@ -172,7 +178,6 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="horizontal"
-          android:background="#C9D6CF"
           android:layout_marginLeft="10dp">
 
          <CheckBox
@@ -180,13 +185,13 @@
              android:layout_height="wrap_content"
              android:id="@+id/cb_rentalcar"
              android:text="Rental Car"
-             android:textColor="#062639"
+             android:textColor="#FFFFFF"
              android:textSize="16sp"/>
          <TextView
              android:layout_width="105dp"
              android:layout_height="wrap_content"
              android:textAlignment="center"
-             android:textColor="#062639"
+             android:textColor="#FFFFFF"
              android:textSize="16sp"
              android:layout_marginLeft="80dp"
              android:id="@+id/txtrentalcar"/>
@@ -199,7 +204,6 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="horizontal"
-          android:background="#C9D6CF"
           android:layout_marginLeft="10dp">
 
          <CheckBox
@@ -207,13 +211,13 @@
              android:layout_height="wrap_content"
              android:text="Assistant"
              android:id="@+id/cb_assistant"
-             android:textColor="#062639"
+             android:textColor="#FFFFFF"
              android:textSize="16sp"/>
          <TextView
              android:layout_width="105dp"
              android:layout_height="wrap_content"
              android:textAlignment="center"
-             android:textColor="#062639"
+             android:textColor="#FFFFFF"
              android:textSize="16sp"
              android:layout_marginLeft="80dp"
              android:id="@+id/txtassistant"/>

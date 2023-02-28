@@ -86,7 +86,7 @@ public class LastActivity extends AppCompatActivity {
         btn_paynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(LastActivity.this, ThankuActivity.class);
+           Bundle bundle = new Bundle();
 
                 String f_name = txt_fname.getText().toString();
                 String l_name = txt_lname.getText().toString();
@@ -102,30 +102,38 @@ public class LastActivity extends AppCompatActivity {
                 Toast.makeText(LastActivity.this, "Your Booking is Sucessfull", Toast.LENGTH_SHORT).show();
 
                 int room_no = Integer.parseInt(txt_roomno.getText().toString());
-                int adult_no = Integer.parseInt(txt_roomno.getText().toString());
+                int adult_no = Integer.parseInt(txt_adults.getText().toString());
                 int child_no = Integer.parseInt(txt_childrens.getText().toString());
                 String discount = txt_discount.getText().toString();
                 String promo = txt_promo.getText().toString();
                 String extra_charge = txt_extracharge.getText().toString();
                 String extra_facility = txt_extra.getText().toString();
 
-                intent1.putExtra("f_name", f_name);
-                intent1.putExtra("l_name", l_name);
-                intent1.putExtra("e_mail", e_mail);
-                intent1.putExtra("add", add);
-                intent1.putExtra("mob", mob);
-                intent1.putExtra("indate", indate);
-                intent1.putExtra("outdate", outdate);
-                intent1.putExtra("room_type", room_type);
-                intent1.putExtra("netpayable", netpayable);
-                intent1.putExtra("discount", discount);
-                intent1.putExtra("room_no", room_no);
-                intent1.putExtra("promo", promo);
-                intent1.putExtra("adult_no", adult_no);
-                intent1.putExtra("child_no", child_no);
-                intent1.putExtra("extra_charge", extra_charge);
-                intent1.putExtra("extra_facility", extra_facility);
-                startActivity(intent1);
+                bundle.putString("f_name", f_name);
+                bundle.putString("l_name", l_name);
+                bundle.putString("e_mail", e_mail);
+                bundle.putString("add", add);
+                bundle.putString("mob", mob);
+                bundle.putString("indate", indate);
+                bundle.putString("outdate", outdate);
+                bundle.putString("room_type", room_type);
+                bundle.putString("netpayable", netpayable);
+                bundle.putString("discount", discount);
+                bundle.putInt("room_no", room_no);
+                bundle.putString("promo", promo);
+
+                bundle.putInt("adult_no", adult_no);
+                bundle.putInt("child_no", child_no);
+                bundle.putString("extra_charge", extra_charge);
+                bundle.putString("extra_facility", extra_facility);
+                PaymentFragment paymentFragment = new PaymentFragment();
+                paymentFragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout, paymentFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+
 
 
 

@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
@@ -56,10 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                      int position = tab.getPosition();
+                     Objects.requireNonNull(tabLayout.getTabAt(tab.getPosition())).setCustomView(R.layout.custom_tab_selected);
                     String tag = "android:switcher:" + R.id.framelayout + ":" + position;
                      fragment = getSupportFragmentManager().findFragmentByTag(tag);
                      if(fragment==null){
@@ -68,13 +71,13 @@ public class MainActivity extends AppCompatActivity {
                                  fragment= dateFragment;
                                  break;
                              case 1 :
-                                 fragment = new ContactFragment();
-                                 break;
-                             case 2 :
                                  fragment = new SelectRoomFragment();
                                  break;
+                             case 2 :
+                                 fragment = new ContactFragment();
+                                 break;
                              case 3 :
-                                 fragment = new PaymentFragment();
+                                 fragment = new ConfirmdetailFragment();
                                  break;
                          }
                          getSupportFragmentManager().beginTransaction().replace(framelayout, fragment, tag).commit();
@@ -90,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+                tabLayout.getTabAt(tab.getPosition()).setCustomView(null);
+
 
             }
 

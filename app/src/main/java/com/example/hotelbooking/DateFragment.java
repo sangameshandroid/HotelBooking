@@ -20,6 +20,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -267,13 +269,15 @@ public class DateFragment extends Fragment {
 
                 boolean checkfields = validFields(checkin, checkout, booking);
                 if (checkfields == true){
-                    ContactFragment contactFragment = new ContactFragment();
-                    contactFragment.setArguments(bundle);
+                    SelectRoomFragment selectRoomFragment = new SelectRoomFragment();
+                    selectRoomFragment.setArguments(bundle);
                     FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.framelayout, contactFragment);
+                    fragmentTransaction.replace(R.id.framelayout, selectRoomFragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
+                    TabLayout tabLayout = getActivity().findViewById(R.id.tablayout);
+                    tabLayout.getTabAt(1).select();
 
                 } else{
                     Toast.makeText(getContext(), "Fields should not be empty", Toast.LENGTH_SHORT).show();

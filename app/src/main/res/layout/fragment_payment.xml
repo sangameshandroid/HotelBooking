@@ -55,6 +55,9 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editcvv"
+                android:hint="xxx"
+                android:inputType="number"
+                android:textColorHint="#6C757d"
                 android:textSize="20sp"
                 android:textColor="@color/white"
                 android:textAlignment="textStart"/>
@@ -94,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editcardname"
                 android:textSize="20sp"
+                android:inputType="textPersonName"
                 android:textColor="@color/white"
                 android:textAlignment="textStart"
                 android:hint="Name On Card"
@@ -102,21 +106,26 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editexpiry"
+                android:textColorHint="#6C757d"
+                android:hint="mm/YYYY"
                 android:textSize="20sp"
+                android:inputType="number"
                 android:textColor="@color/white"
                 android:textAlignment="textStart"/>
 
         </LinearLayout>
 <Button
-    android:layout_width="wrap_content"
+    android:id="@+id/btn_pay"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_add_btn"
-    android:text="Proceed"
+    android:text="Pay Now"
     android:textSize="18sp"
     android:textStyle="bold"
     android:layout_marginLeft="10dp"
     android:layout_marginBottom="10dp"
     android:padding="5dp"
+    android:layout_margin="10dp"
     android:textColor="#062639"/>
     </LinearLayout>
 

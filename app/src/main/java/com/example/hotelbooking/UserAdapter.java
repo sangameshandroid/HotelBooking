@@ -60,6 +60,22 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         holder.txt_cost.setText(rdf.getCost());
         holder.txt_tax.setText(rdf.getTax());
         holder.radio_room.setChecked(position == selectedposition);
+        if(position == selectedposition){
+            holder.radio_room.setBackgroundColor(Color.parseColor("#C9D6CF"));
+            holder.radio_room.setTextColor(Color.BLACK);
+            holder.txt_cost.setBackgroundColor(Color.parseColor("#C9D6CF"));
+            holder.txt_cost.setTextColor(Color.BLACK);
+            holder.txt_tax.setBackgroundColor(Color.parseColor("#C9D6CF"));
+            holder.txt_tax.setTextColor(Color.BLACK);
+        }else{
+
+            holder.radio_room.setTextColor(Color.WHITE);
+
+            holder.txt_cost.setTextColor(Color.WHITE);
+
+            holder.txt_tax.setTextColor(Color.WHITE);
+
+        }
 
         holder.radio_room.setOnClickListener(new View.OnClickListener() {
             @Override

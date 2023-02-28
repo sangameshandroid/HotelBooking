@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -283,7 +285,7 @@ public class SelectRoomFragment extends Fragment {
         btn_booknow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              Intent intent = new Intent(getActivity(), LastActivity.class);
+              Bundle bundle2 = new Bundle();
 
               Bundle bundle = getArguments();
               if(bundle!=null){
@@ -298,16 +300,16 @@ public class SelectRoomFragment extends Fragment {
                   String address = bundle.getString("address");
                   String phone = bundle.getString("phone");
 
-                  intent.putExtra("checkindate1", checkindate);
-                  intent.putExtra("checkoutdate1", checkoutdate);
-                  intent.putExtra("room2", room1);
-                  intent.putExtra("adult2", adult1);
-                  intent.putExtra("child2", child1);
-                  intent.putExtra("firstname", firstname);
-                  intent.putExtra("lastname", lasttname);
-                  intent.putExtra("email1", email);
-                  intent.putExtra("address1", address);
-                  intent.putExtra("phone1", phone);
+                  bundle2.putString("checkindate1", checkindate);
+                  bundle2.putString("checkoutdate1", checkoutdate);
+                  bundle2.putInt("room2", room1);
+                  bundle2.putInt("adult2", adult1);
+                  bundle2.putInt("child2", child1);
+                  bundle2.putString("firstname", firstname);
+                  bundle2.putString("lastname", lasttname);
+                  bundle2.putString("email1", email);
+                  bundle2.putString("address1", address);
+                  bundle2.putString("phone1", phone);
               }
 
 
@@ -376,7 +378,7 @@ public class SelectRoomFragment extends Fragment {
                 if (selectedPosition != -1) {
                     RoomTypefir rdf = list.get(selectedPosition);
                     String selectedradiotext = rdf.getRoom();
-                    intent.putExtra("selectedradiotext", selectedradiotext);
+                    bundle2.putString("selectedradiotext", selectedradiotext);
                 } else {
                     Toast.makeText(getContext(), "Please select an option", Toast.LENGTH_SHORT).show();
                 }
@@ -384,12 +386,18 @@ public class SelectRoomFragment extends Fragment {
                String netamt= txtnettotal.getText().toString();
 
 
-                intent.putExtra("selectedRadiobutton", selectedradiobuttontext);
-                intent.putExtra("selecteddiscount", selecteddiscount);
-                intent.putExtra("selectedcheckbox", selectedcheckboxtext);
-                intent.putExtra("selectedextracharge", selectedextracharge);
-                intent.putExtra("netamount", netamt);
-                startActivity(intent);
+                bundle2.putString("selectedRadiobutton", selectedradiobuttontext);
+                bundle2.putString("selecteddiscount", selecteddiscount);
+                bundle2.putString("selectedcheckbox", selectedcheckboxtext);
+                bundle2.putString("selectedextracharge", selectedextracharge);
+                bundle2.putString("netamount", netamt);
+                ConfirmdetailFragment confirmdetailFragment = new ConfirmdetailFragment();
+                confirmdetailFragment.setArguments(bundle2);
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.framelayout, confirmdetailFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
 
 
