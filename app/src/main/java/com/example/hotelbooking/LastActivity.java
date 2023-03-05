@@ -16,9 +16,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class LastActivity extends AppCompatActivity {
-    TextView txt_checkin, txt_checkout, txt_roomno, txt_adults, txt_childrens, txt_extra, txt_discount, txt_netamont, txt_promo, txt_extracharge, txt_roomtype, txt_fname, txt_lname, txt_phone, txt_address, txt_email;
-    Button btn_paynow;
+    TextView txt_checkin, txt_checkout, txt_roomno, txt_adults, txt_childrens, txt_discount, txt_netamont, txt_promo, txt_extracharge, txt_roomtype, txt_fname, txt_lname, txt_phone, txt_address, txt_email, txt_roomprice, txt_roomtax;
     DatabaseReference db;
+    Button btn_again;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -31,8 +31,9 @@ public class LastActivity extends AppCompatActivity {
         txt_roomno = findViewById(R.id.txt_Roomno);
         txt_adults = findViewById(R.id.txt_adults);
         txt_childrens = findViewById(R.id.txt_children);
-        txt_extra = findViewById(R.id.txt_extra);
         txt_discount = findViewById(R.id.txt_discount);
+        txt_roomprice = findViewById(R.id.txt_roomprice);
+        txt_roomtax = findViewById(R.id.txt_roomtax);
         txt_netamont = findViewById(R.id.txt_netamount);
         txt_extracharge = findViewById(R.id.txt_extracharge);
         txt_promo = findViewById(R.id.txt_promo);
@@ -42,48 +43,57 @@ public class LastActivity extends AppCompatActivity {
         txt_address = findViewById(R.id.txt_address);
         txt_email = findViewById(R.id.txt_email);
         txt_phone = findViewById(R.id.txt_phone);
+        btn_again = findViewById(R.id.btn_again);
 
-        btn_paynow =findViewById(R.id.btn_paynow);
+        btn_again.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LastActivity.this,LoginActivity.class));
+            }
+        });
+
 
 
         Intent intent = getIntent();
-        String Fname = intent.getStringExtra("firstname");
-        String Lname = intent.getStringExtra("lastname");
-        String Email = intent.getStringExtra("email1");
-        String Address = intent.getStringExtra("address1");
-        String Phone = intent.getStringExtra("phone1");
-        String checkin = intent.getStringExtra("checkindate1");
-        String checkout = intent.getStringExtra("checkoutdate1");
-        int rooms = intent.getIntExtra("room2",0);
-        int adults = intent.getIntExtra("adult2",0);
-        int childs = intent.getIntExtra("child2",0);
-        String selectedradiotext = intent.getStringExtra("selectedradiotext");
-        String selectedradio = intent.getStringExtra("selectedRadiobutton");
-        String applieddiscount = intent.getStringExtra("selecteddiscount");
-        String extrafacility = intent.getStringExtra("selectedextracharge");
-        String selectedcheckbox = intent.getStringExtra("selectedcheckbox");
-        String nettotal = intent.getStringExtra("netamount");
+        String Fname = intent.getStringExtra("fname");
+        String Lname = intent.getStringExtra("lname");
+        String Email = intent.getStringExtra("email");
+        String Address = intent.getStringExtra("add");
+        String Phone = intent.getStringExtra("mob");
+        String checkin = intent.getStringExtra("indate");
+        String checkout = intent.getStringExtra("outdate");
+        int rooms = intent.getIntExtra("rooms",0);
+        int adults = intent.getIntExtra("adults",0);
+        int childs = intent.getIntExtra("childs",0);
+        String selectedradiotext = intent.getStringExtra("roomtype");
+        String applieddiscount = intent.getStringExtra("promo");
+        String extrafacilitycharge = intent.getStringExtra("extracharge");
+        String nettotal = intent.getStringExtra("total");
+        String roomPrice = intent.getStringExtra("roomprice");
+        String roomTax = intent.getStringExtra("tax");
+        String Discount = intent.getStringExtra("discount");
         txt_fname.setText(Fname);
         txt_lname.setText(Lname);
         txt_address.setText(Address);
         txt_email.setText(Email);
         txt_phone.setText(Phone);
+        txt_roomprice.setText(roomPrice);
+        txt_roomtax.setText(roomTax);
         txt_checkin.setText(checkin);
         txt_checkout.setText(checkout);
         txt_roomtype.setText(selectedradiotext);
         txt_roomno.setText(String.valueOf(rooms));
         txt_adults.setText(String.valueOf(adults));
         txt_childrens.setText(String.valueOf(childs));
-        txt_discount.setText(applieddiscount);
-        txt_promo.setText(selectedradio);
-        txt_extracharge.setText(extrafacility + "/-");
-        txt_extra.setText(selectedcheckbox);
+        txt_discount.setText(Discount);
+        txt_promo.setText(applieddiscount);
+        txt_extracharge.setText(extrafacilitycharge + "/-");
         txt_netamont.setText(nettotal + "/-");
 
         db = FirebaseDatabase.getInstance().getReference();
 
 
-        btn_paynow.setOnClickListener(new View.OnClickListener() {
+      /* btn_paynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
            Bundle bundle = new Bundle();
@@ -139,7 +149,7 @@ public class LastActivity extends AppCompatActivity {
 
 
             }
-        });
+        });*/
 
 
 

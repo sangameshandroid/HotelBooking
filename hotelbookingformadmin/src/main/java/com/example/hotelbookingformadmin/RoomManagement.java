@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,16 +26,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoomManagement extends AppCompatActivity {
+public class RoomManagement extends AppCompatActivity{
 
 
     RecyclerView roomrecycler;
     private RoomsAdapter roomsAdapter;
     private List<RoomTypefir> list;
     private RoomTypefir rdf;
+    private RoomTypefir selectedData;
+
 
     EditText edroom, edcost, edtax;
-    Button btnadd;
+    Button btnadd, btnupdate, btndelete;
    private DatabaseReference db;
     ActivityResultLauncher<Intent> updateLauncher;
 
@@ -48,12 +52,26 @@ public class RoomManagement extends AppCompatActivity {
         edcost = findViewById(R.id.editcost);
         edtax = findViewById(R.id.edittax);
         btnadd = findViewById(R.id.btnadd);
+        btnupdate = findViewById(R.id.btnupdate);
+        btndelete = findViewById(R.id.btndelete);
         roomrecycler = findViewById(R.id.roomrecycler);
 
         db = FirebaseDatabase.getInstance().getReference("RoomDatabase");
-
         list = new ArrayList<>();
         roomsAdapter = new RoomsAdapter(list);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         updateLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -131,6 +149,14 @@ public class RoomManagement extends AppCompatActivity {
 
 
 
+
+
+
+
+
+
+
+
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,5 +177,10 @@ public class RoomManagement extends AppCompatActivity {
                 Toast.makeText(RoomManagement.this, "Added Successfully", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+
+
     }
 }

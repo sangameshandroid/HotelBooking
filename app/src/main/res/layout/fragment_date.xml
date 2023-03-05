@@ -5,47 +5,45 @@
     android:layout_height="match_parent"
     tools:context=".DateFragment"
     android:background="#062639"
+
     tools:ignore="ScrollViewCount">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_layout"
-        android:layout_margin="10dp"
-        android:orientation="vertical"
-        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="10dp"
         android:id="@+id/datelayout">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dates"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:drawableStart="@drawable/ic_date"
-            android:layout_marginLeft="5dp"/>
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="8dp">
+
+
+            android:orientation="vertical"
+            >
             <TextView
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="Booking Date"
                 android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="@color/white"/>
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:padding="5dp"
+                android:textColor="@color/custom_color"/>
             <EditText
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
                 android:hint="dd/mm/yyyy"
-                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                android:backgroundTint="@color/custom_color"
+                android:textColor="@color/custom_color"
                 android:textColorHint="#B3B6B7"
                 android:textSize="15sp"
                 android:id="@+id/edbooking"
@@ -56,53 +54,55 @@
 
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@drawable/bg_layout"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="5dp"
+            android:orientation="vertical"
             android:layout_marginLeft="5dp">
             <TextView
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="Check-in"
-                android:textSize="18sp"
-                android:textColor="#FFFFFF"
-                android:drawableStart="@drawable/ic_date" />
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:textColor="@color/custom_color"
+                 />
             <EditText
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
                 android:hint="dd/mm/yyyy"
-                android:textColorHint="#B3B6B7"
-                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                android:textColorHint="#6C757D"
+                android:textColor="@color/custom_color"
+                android:backgroundTint="@color/custom_color"
                 android:textSize="15sp"
                 android:id="@+id/edcheckin"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@drawable/bg_layout"
-            android:layout_marginTop="7dp"
-            android:layout_marginRight="5dp"
+            android:orientation="vertical"
             android:layout_marginLeft="5dp">
             <TextView
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="Check-out"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:drawableStart="@drawable/ic_date" />
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:padding="5dp"
+                android:textColor="@color/custom_color"
+                android:textSize="16sp"
+                />
             <EditText
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
                 android:hint="dd/mm/yyyy"
-                android:textColorHint="#B3B6B7"
-                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                android:textColorHint="#6C757D"
+                android:textColor="@color/custom_color"
+                android:backgroundTint="@color/custom_color"
                 android:textSize="15sp"
                 android:id="@+id/edcheckout"/>
         </LinearLayout>
@@ -110,302 +110,298 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="370dp"
         android:layout_height="70dp"
-        android:orientation="vertical"
-        android:background="@drawable/bg_layout"
-        android:gravity="center_vertical"
-        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginRight="10dp"
+        android:gravity="center_horizontal|center_vertical"
+
+
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp">
         <TextView
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="Rooms"
-            android:layout_marginLeft="5dp"
-            android:textSize="18sp"
+           android:textAlignment="center"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:drawableStart="@drawable/ic_room"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp">
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="25dp"
-                android:text="Rooms Count"
-                android:textSize="18sp"
-                android:textColor="#FFFFFF"
-                android:textAlignment="center"/>
-
-
-                <Button
-                android:layout_width="40dp"
-                android:layout_height="25dp"
-                    android:layout_marginStart="80dp"
-                android:background="@drawable/bg_sub_btn"
-                android:text="-"
-                android:textSize="15sp"
-                android:textColor="#062639"
-                android:id="@+id/btnsubtract"/>
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="25dp"
-                    android:id="@+id/txtroomno"
-                    android:textColor="#FFFFFF"
-                    android:textAlignment="center"/>
-                <Button
-                    android:layout_width="40dp"
-                    android:layout_height="25dp"
-                    android:background="@drawable/bg_add_btn"
-                    android:text="+"
-                    android:textSize="15sp"
-                    android:textColor="#062639"
-                    android:id="@+id/btnadd"
-                    />
-
-
-
-
-
-
-
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:orientation="vertical"
-        android:background="@drawable/bg_layout"
-        android:gravity="center_vertical"
-        android:layout_margin="10dp"
-        android:layout_marginTop="20dp">
-
+            android:textColor="@color/custom_color"
+            />
         <TextView
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Guests"
             android:layout_marginLeft="5dp"
-            android:textSize="18sp"
+            android:textAlignment="center"
+            android:text="Adults"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:drawableStart="@drawable/ic_guest4"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
+            android:textColor="@color/custom_color"
+            />
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Children"
+            android:textAlignment="center"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="25dp"
-                android:text="Adults"
-                android:textSize="18sp"
-                android:textColor="#FFFFFF"
-                android:textAlignment="center"/>
-
-            <Button
-                android:layout_width="40dp"
-                android:layout_height="25dp"
-                android:background="@drawable/bg_sub_btn"
-                android:layout_marginStart="80dp"
-                android:text="-"
-                android:textSize="15sp"
-                android:textColor="#062639"
-                android:id="@+id/btnsubtract2"/>
-            <TextView
-                android:layout_width="40dp"
-                android:layout_height="25dp"
-                android:textColor="#FFFFFF"
-                android:id="@+id/txtadultno"
-                android:textAlignment="center"/>
-            <Button
-                android:layout_width="40dp"
-                android:layout_height="25dp"
-                android:background="@drawable/bg_add_btn"
-                android:text="+"
-                android:textSize="15sp"
-                android:textColor="#062639"
-                android:id="@+id/btnadd2"
-                />
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp">
-            <TextView
-                android:layout_width="120dp"
-                android:layout_height="25dp"
-                android:text="Children"
-                android:textSize="18sp"
-                android:textColor="#FFFFFF"
-                android:textAlignment="center"/>
-
-            <Button
-                android:layout_width="40dp"
-                android:layout_height="25dp"
-                android:background="@drawable/bg_sub_btn"
-                android:layout_marginStart="80dp"
-                android:text="-"
-                android:textSize="15sp"
-                android:textColor="#062639"
-                android:id="@+id/btnsubtract3"/>
-            <TextView
-                android:layout_width="40dp"
-                android:layout_height="25dp"
-                android:textColor="#FFFFFF"
-                android:id="@+id/txtchildno"
-                android:textAlignment="center"/>
-            <Button
-                android:layout_width="40dp"
-                android:layout_height="25dp"
-                android:background="@drawable/bg_add_btn"
-                android:text="+"
-                android:textSize="15sp"
-                android:textColor="#062639"
-                android:id="@+id/btnadd3"
-                />
-
-
-        </LinearLayout>
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/custom_color"
+            />
     </LinearLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_add_btn"
-        android:layout_margin="20dp"
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="439dp"
+        android:layout_marginLeft="10dp"
         android:layout_gravity="center"
-        android:text="Contact Details"
-        android:id="@+id/selectRooms"
-        android:textSize="15sp"
-        android:textColor="#062639"/>
+        android:layout_marginRight="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-<LinearLayout
-    android:layout_width="210dp"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginTop="20dp"
-    android:layout_marginLeft="10dp"
-    android:gravity="center_vertical"
-    android:layout_marginRight="10dp"
-    android:background="@drawable/bg_layout">
 
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="25dp"
-        android:text="Duration"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginLeft="5dp"/>
-    <TextView
-        android:layout_width="100dp"
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtduration"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
-        android:textAlignment="center"/>
+        android:background="#c9D6CF"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp">
+        <Button
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:background="@drawable/bg_add_btn"
+            android:text="-"
+            android:textSize="15sp"
+            android:textColor="#062639"
+            android:id="@+id/btnsubtract"/>
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:text="0"
+            android:id="@+id/txtroomno"
+            android:textColor="@color/black"
+            android:textAlignment="center"/>
+        <Button
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:background="@drawable/bg_add_btn"
+            android:text="+"
+            android:textSize="15sp"
+            android:textColor="#062639"
+            android:id="@+id/btnadd"
+            />
+    </LinearLayout>
 
-</LinearLayout>
         <LinearLayout
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/bg_layout">
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginLeft="60dp"
+            android:background="#C9D6CF"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnsubtract2"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
+                android:background="@drawable/bg_add_btn"
+                android:text="-"
+                android:textColor="#062639"
+                android:textSize="15sp" />
 
             <TextView
-                android:layout_width="100dp"
+                android:id="@+id/txtadultno"
+                android:layout_width="20dp"
                 android:layout_height="25dp"
-                android:text="Rooms"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginLeft="5dp"/>
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtnoofroom"
-                android:textSize="18sp"
-                android:textColor="#FFFFFF"
-                android:textAlignment="center"/>
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/btnadd2"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
+                android:background="@drawable/bg_add_btn"
+                android:text="+"
+                android:textColor="#062639"
+                android:textSize="15sp" />
 
         </LinearLayout>
         <LinearLayout
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_layout">
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:background="#C9D6CF"
+            android:layout_marginLeft="60dp"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="100dp"
+
+            <Button
+                android:id="@+id/btnsubtract3"
+                android:layout_width="20dp"
                 android:layout_height="25dp"
-                android:text="Adults"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginLeft="5dp"/>
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtadult"
-                android:textSize="18sp"
-                android:textColor="#FFFFFF"
-                android:textAlignment="center"/>
+                android:background="@drawable/bg_add_btn"
+                android:text="-"
+                android:textColor="#062639"
+                android:textSize="15sp" />
 
+            <TextView
+                android:id="@+id/txtchildno"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/btnadd3"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
+                android:background="@drawable/bg_add_btn"
+                android:text="+"
+                android:textColor="#062639"
+                android:textSize="15sp" />
         </LinearLayout>
+    </LinearLayout>
+
+        <Button
+            android:id="@+id/selectRooms"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="#C9d6CF"
+            android:text="Select Rooms"
+            android:textColor="#062639"
+            android:textSize="15sp" />
+
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="212dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/text_background"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="Duration    :"
+                    android:textColor="@color/custom_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtduration"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/custom_color"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="Rooms       :"
+                    android:textColor="@color/custom_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtnoofroom"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/custom_color"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="Adults        :"
+                    android:textColor="@color/custom_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtadult"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/custom_color"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+            \  <LinearLayout
             android:layout_width="210dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:gravity="center_vertical"
-            android:background="@drawable/bg_layout">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="25dp"
-                android:text="Children"
-                android:textColor="#FFFFFF"
+                android:layout_marginLeft="5dp"
+                android:text="Children     :"
+                android:textColor="@color/custom_color"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginLeft="5dp"/>
+                android:textStyle="bold" />
+
             <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
                 android:id="@+id/txtchild"
-                android:textSize="18sp"
-                android:textColor="#FFFFFF"
-                android:textAlignment="center"/>
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/custom_color"
+                android:textSize="18sp" />
 
         </LinearLayout>
-
-
-
+        </LinearLayout>
 
     </LinearLayout>
+
+    </LinearLayout>
+
+
 
 </ScrollView>

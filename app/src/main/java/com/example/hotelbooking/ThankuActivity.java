@@ -7,38 +7,38 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class ThankuActivity extends AppCompatActivity {
-    private TextView txt_fname, txt_lname, txt_email, txt_phone, txt_address, txt_roomtype, txt_checkin, txt_checkout, txt_roono, txt_adults, txt_children, txt_netamount, txt_discount, txt_extra, txt_extracharge, txt_promo;
-    private Button btn_exit, btn_logout;
+    private Button btn_paynow;
+    EditText editcardno, editcvv, editcardname, editexpiry;
+    private DatabaseReference db;
+    private UserData2 ud2;
+
+
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thanku);
-        txt_fname = findViewById(R.id.txt_fname);
-        txt_lname = findViewById(R.id.txt_lname);
-        txt_email = findViewById(R.id.txt_email);
-        txt_phone = findViewById(R.id.txt_phone);
-        txt_address = findViewById(R.id.txt_address);
-        txt_roomtype = findViewById(R.id.txt_roomtype);
-        txt_roono = findViewById(R.id.txt_Roomno);
-        txt_adults = findViewById(R.id.txt_adults);
-        txt_children = findViewById(R.id.txt_children);
-        txt_checkin = findViewById(R.id.txt_checkin);
-        txt_checkout = findViewById(R.id.txt_checkout);
-        txt_netamount = findViewById(R.id.txt_netamount);
-        txt_extra = findViewById(R.id.txt_extra);
-        txt_extracharge = findViewById(R.id.txt_extracharge);
-        txt_promo = findViewById(R.id.txt_promo);
-        txt_discount = findViewById(R.id.txt_discount);
-        btn_exit = findViewById(R.id.btn_exit);
-        btn_logout = findViewById(R.id.btn_logout);
+        btn_paynow = findViewById(R.id.btn_paynow);
+        editcardno = findViewById(R.id.editcardno);
+        editcvv = findViewById(R.id.editcvv);
+        editcardname = findViewById(R.id.editcardname);
+        editexpiry = findViewById(R.id.editexpiry);
 
-        btn_logout.setOnClickListener(new View.OnClickListener() {
+
+         db = FirebaseDatabase.getInstance().getReference("UserData2");
+
+        //btn_exit = findViewById(R.id.btn_exit);
+        //btn_logout = findViewById(R.id.btn_logout);
+
+       /* btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ThankuActivity.this,LoginActivity.class));
@@ -51,45 +51,109 @@ public class ThankuActivity extends AppCompatActivity {
                 Toast.makeText(ThankuActivity.this, "Thank You For Booking, Visit again", Toast.LENGTH_SHORT).show();
                // startActivity(new Intent(ThankuActivity.this,LoginActivity.class));
             }
+        });*/
+
+
+        btn_paynow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(ThankuActivity.this, LastActivity.class);
+
+                Intent intent = getIntent();
+                String Fname= intent.getStringExtra("firstname");
+                String Lname=intent.getStringExtra("lastname");
+                String Email= intent.getStringExtra("email");
+                String Mob = intent.getStringExtra("phone");
+                String Add =intent.getStringExtra("address");
+                String Indate=intent.getStringExtra("checkin");
+                String Outdate=intent.getStringExtra("checkout");
+                String Netpay = intent.getStringExtra("total");
+                String Roomtype=  intent.getStringExtra("selectedradio");
+                String Discount= intent.getStringExtra("discount");
+                int Roomno= intent.getIntExtra("rooms",0);
+                int Adultno= intent.getIntExtra("adults",0);
+                int Childno=intent.getIntExtra("childs",0);
+                String Extracharge= intent.getStringExtra("extracharge");
+                String Promo =intent.getStringExtra("promo");
+                String roomprice = intent.getStringExtra("roomprice");
+                String roomtax = intent.getStringExtra("tax");
+                if(Indate==null && Outdate==null && Roomno==0 && Adultno==0 && Childno==0){
+                    Toast.makeText(ThankuActivity.this, "value is null", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(ThankuActivity.this, "has Value", Toast.LENGTH_SHORT).show();
+                }
+
+
+           /*     String cardno = editcardno.getText().toString();
+                String cardcvv = editcvv.getText().toString();
+                String cardname = editcardname.getText().toString();
+                String cardexpiry = editexpiry.getText().toString();
+
+                boolean checkcard =  validcard(cardno, cardcvv, cardname, cardexpiry);
+                if (checkcard == true){
+
+                    Toast.makeText(ThankuActivity.this, " payment", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(ThankuActivity.this, " feilds are empty", Toast.LENGTH_SHORT).show();
+
+                }*/
+
+                ud2 = new UserData2(Fname, Lname, Email, Mob, Add, Roomtype, Indate, Outdate, Netpay);
+                db.push().setValue(ud2);
+                Toast.makeText(ThankuActivity.this, "Booking Successful", Toast.LENGTH_SHORT).show();
+
+
+
+
+                intent2.putExtra("fname", Fname);
+                intent2.putExtra("lname", Lname);
+                intent2.putExtra("email", Email);
+                intent2.putExtra("mob", Mob);
+                intent2.putExtra("add", Add);
+                intent2.putExtra("indate", Indate);
+                intent2.putExtra("outdate", Outdate);
+                intent2.putExtra("total", Netpay);
+                intent2.putExtra("roomtype", Roomtype);
+                intent2.putExtra("rooms", Roomno);
+                intent2.putExtra("adults",Adultno);
+                intent2.putExtra("childs",Childno);
+                intent2.putExtra("extracharge",Extracharge);
+                intent2.putExtra("promo",Promo);
+                intent2.putExtra("roomprice",roomprice);
+                intent2.putExtra("tax",roomtax);
+                intent2.putExtra("discount", Discount);
+                startActivity(intent2);
+
+            }
         });
 
 
-        Intent intent = getIntent();
-       String Fname= intent.getStringExtra("f_name");
-        String Lname=intent.getStringExtra("l_name");
-       String Email= intent.getStringExtra("e_mail");
-       String Mob = intent.getStringExtra("mob");
-        String Add =intent.getStringExtra("add");
-        String Indate=intent.getStringExtra("indate");
-        String Outdate=intent.getStringExtra("outdate");
-        String Netpay = intent.getStringExtra("netpayable");
-       String Roomtype=  intent.getStringExtra("room_type");
-       String Discount= intent.getStringExtra("discount");
-        int Roomno= intent.getIntExtra("room_no",0);
-       int Adultno= intent.getIntExtra("adult_no",0);
-        int Childno=intent.getIntExtra("child_no",0);
-       String Extracharge= intent.getStringExtra("extra_charge");
-        String Extrafacility =intent.getStringExtra("extra_facility");
-        String Promo =intent.getStringExtra("promo");
 
-        txt_fname.setText(Fname);
-        txt_lname.setText(Lname);
-        txt_email.setText(Email);
-        txt_phone.setText(Mob);
-        txt_address.setText(Add);
-        txt_checkin.setText(Indate);
-        txt_checkout.setText(Outdate);
-        txt_roomtype.setText(Roomtype);
-        txt_roono.setText(String.valueOf(Roomno));
-        txt_adults.setText(String.valueOf(Adultno));
-        txt_children.setText(String.valueOf(Childno));
-        txt_promo.setText(Promo);
-        txt_extracharge.setText(Extracharge);
-        txt_discount.setText(Discount);
-        txt_extra.setText(Extrafacility);
-        txt_netamount.setText(Netpay);
 
 
 
     }
+   /* private boolean validcard(String cardno, String cardcvv, String cardname, String cardexpiry) {
+        if (cardno.length()<16){
+            editcardno.requestFocus();
+            editcardno.setError("Enter Valid Card Number");
+            return false;
+        } else if (cardcvv.length()<3){
+            editcvv.requestFocus();
+            editcvv.setError("Enter Valid CVV");
+            return false;
+        } else if (editcardname.length()==0){
+            editcardname.requestFocus();
+            editcardname.setError("Enter valid Name");
+            return false;
+        } else if (cardexpiry.length()==0){
+            editexpiry.requestFocus();
+            editexpiry.setError("Enter valid Expiry Date");
+            return false;
+        }
+        return true;
+    }*/
+
+
 }

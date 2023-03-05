@@ -68,10 +68,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             holder.txt_tax.setBackgroundColor(Color.parseColor("#C9D6CF"));
             holder.txt_tax.setTextColor(Color.BLACK);
         }else{
+            holder.radio_room.setBackgroundResource(R.drawable.custom_radiobutton);
 
             holder.radio_room.setTextColor(Color.WHITE);
+            holder.txt_cost.setBackgroundResource(R.drawable.custom_radiobutton);
 
             holder.txt_cost.setTextColor(Color.WHITE);
+            holder.txt_tax.setBackgroundResource(R.drawable.custom_radiobutton);
 
             holder.txt_tax.setTextColor(Color.WHITE);
 
@@ -113,7 +116,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             txt_tax = itemView.findViewById(R.id.txt_tax);
             radioGroup = itemView.findViewById(R.id.radiogroup);
             radio_room = itemView.findViewById(R.id.radio_room);
-            itemView.setBackgroundResource(R.drawable.cardview_background);
+
 
 
         }

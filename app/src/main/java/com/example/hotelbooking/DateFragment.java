@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -70,12 +72,14 @@ public class DateFragment extends Fragment {
         btnsubtract3 = view.findViewById(R.id.btnsubtract3);
         selectrooms = view.findViewById(R.id.selectRooms);
         edbooking = view.findViewById(R.id.edbooking);
-        txtroonno.setText("1");
-        txtadultno.setText("1");
-        txtchildno.setText("1");
-        txtadult.setText("1");
-        txtchild.setText("1");
-        txtnoofrooms.setText("1");
+        txtroonno.setText("0");
+        txtadultno.setText("0");
+        txtchildno.setText("0");
+        txtadult.setText("0");
+        txtchild.setText("0");
+        txtnoofrooms.setText("0");
+
+        Calendar calendar = Calendar.getInstance();String currentDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());edbooking.setText(currentDate);
 
 
         edbooking.setOnClickListener(new View.OnClickListener() {
@@ -260,6 +264,10 @@ public class DateFragment extends Fragment {
                 int adults = Integer.parseInt(txtadultno.getText().toString());
                 int childs = Integer.parseInt(txtchildno.getText().toString());
 
+                if(checkin == null && checkout==null && rooms==0 && adults==0 && childs==0){
+                    Toast.makeText(getActivity(), "value is null", Toast.LENGTH_SHORT).show();
+                }
+
                 Bundle bundle = new Bundle();
                 bundle.putString("checkin", checkin);
                 bundle.putString("checkout", checkout);
@@ -267,21 +275,22 @@ public class DateFragment extends Fragment {
                 bundle.putInt("adults", adults);
                 bundle.putInt("childs", childs);
 
-                boolean checkfields = validFields(checkin, checkout, booking);
-                if (checkfields == true){
+
                     SelectRoomFragment selectRoomFragment = new SelectRoomFragment();
                     selectRoomFragment.setArguments(bundle);
-                    FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+
+                 TabLayout tabLayout = getActivity().findViewById(R.id.tablayout);
+                 tabLayout.getTabAt(1).select();
+
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.framelayout, selectRoomFragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
-                    TabLayout tabLayout = getActivity().findViewById(R.id.tablayout);
-                    tabLayout.getTabAt(1).select();
 
-                } else{
-                    Toast.makeText(getContext(), "Fields should not be empty", Toast.LENGTH_SHORT).show();
-                }
+
+
+
 
 
 
@@ -295,7 +304,7 @@ public class DateFragment extends Fragment {
 
     }
 
-    private boolean validFields(String checkin, String checkout, String booking) {
+   /* private boolean validFields(String checkin, String checkout, String booking) {
         if (checkin.length()==0){
             edcheckin.requestFocus();
             edcheckin.setError("Field Not be empty");
@@ -310,7 +319,7 @@ public class DateFragment extends Fragment {
             return false;
         }
         return true;
-    }
+    }*/
 
     public static int getDaysDifference(Date sdate, Date edate){
         if(sdate==null||edate==null){

@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        tabLayout.getTabAt(0).select();
+        tabLayout.getTabAt(0).setCustomView(R.layout.custom_tab_selected);
 
     }
 

@@ -3,6 +3,7 @@ package com.example.hotelbooking;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -41,24 +44,19 @@ public class SelectRoomFragment extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference db;
     List<RoomTypefir> list;
-    TextView txtroom_price;
-    TextView txtroom_tax;
+    TextView txt_roomprice;
+    TextView txt_roomtype;
+    TextView txt_roomtax;
     TextView txtbreakfast;
     TextView txtlaundry;
     TextView txtrentalcar;
     TextView txtassistant;
-    TextView txttotal;
-    Button btn_add, btn_applypromo, btn_booknow;
+    TextView txttotal, txt_otherfacility;
+    Button btn_details;
     CheckBox cb_breakfast, cb_laundry, cb_rentalcar, cb_assistant;
-    BigDecimal sum=BigDecimal.ZERO;
-    RadioGroup radiogrouppromo1, radiogrouppromo2, radiogrouppromo3;
-    TextView txtpromo1, txtpromo2, txtpromo3, txtnettotal;
-    CardView cardview1, cardview2, cardview3;
-
-
-
-
-
+    BigDecimal sum = BigDecimal.ZERO;
+    BigDecimal total = BigDecimal.ZERO;
+    int price1 = 0, price2=0, percent = 0;
 
 
     @Override
@@ -72,49 +70,30 @@ public class SelectRoomFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        //Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_select_room, container, false);
         recyclerView = view.findViewById(R.id.recycler_room);
-        txtroom_price = view.findViewById(R.id.txtroom_price);
-        txtroom_tax = view.findViewById(R.id.txtroom_tax);
-        btn_add = view.findViewById(R.id.btn_add);
-        cb_breakfast =view.findViewById(R.id.cb_breakfast);
-        cb_laundry =view.findViewById(R.id.cb_laundry);
-        cb_rentalcar =view.findViewById(R.id.cb_rentalcar);
-        cb_assistant =view.findViewById(R.id.cb_assistant);
+        txt_roomprice = view.findViewById(R.id.txt_roomprice);
+        txt_roomtax = view.findViewById(R.id.txt_roomtax);
+        txt_otherfacility = view.findViewById(R.id.txt_otherfacility);
+
+        cb_breakfast = view.findViewById(R.id.cb_breakfast);
+        btn_details= view.findViewById(R.id.btn_details);
+        cb_laundry = view.findViewById(R.id.cb_laundry);
+        cb_rentalcar = view.findViewById(R.id.cb_rentalcar);
+        cb_assistant = view.findViewById(R.id.cb_assistant);
         txtbreakfast = view.findViewById(R.id.txtbreakfast);
         txtlaundry = view.findViewById(R.id.txtlaundry);
+        txt_roomtype = view.findViewById(R.id.txt_roomtype);
         txtrentalcar = view.findViewById(R.id.txtrentalcar);
         txtassistant = view.findViewById(R.id.txtassistant);
         txttotal = view.findViewById(R.id.txttotal);
 
 
-        radiogrouppromo1 = view.findViewById(R.id.Radiogrouppromo1);
-        radiogrouppromo2 = view.findViewById(R.id.Radiogrouppromo2);
-        radiogrouppromo3 = view.findViewById(R.id.Radiogrouppromo3);
 
 
 
-        txtpromo1 = view.findViewById(R.id.txtpromo1);
-        txtpromo2 = view.findViewById(R.id.txtpromo2);
-        txtpromo3 = view.findViewById(R.id.txtpromo3);
-        txtnettotal = view.findViewById(R.id.txtnettotal);
-
-        btn_applypromo = view.findViewById(R.id.btn_applypromo);
-        btn_booknow = view.findViewById(R.id.btn_Booknow);
-
-        cardview1 = view.findViewById(R.id.cardview1);
-        cardview2 = view.findViewById(R.id.cardview2);
-        cardview3 = view.findViewById(R.id.cardview3);
-
-        cardview1.setBackgroundResource(R.drawable.cardview_background);
-        cardview2.setBackgroundResource(R.drawable.cardview_background);
-        cardview3.setBackgroundResource(R.drawable.cardview_background);
-
-
-
-
-        userAdapter = new UserAdapter(getContext(),this);
+        userAdapter = new UserAdapter(getContext(), this);
 
         list = new ArrayList<>();
 
@@ -124,7 +103,7 @@ public class SelectRoomFragment extends Fragment {
         db.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                for (DataSnapshot snap:task.getResult().getChildren()) {
+                for (DataSnapshot snap : task.getResult().getChildren()) {
                     RoomTypefir rdf = snap.getValue(RoomTypefir.class);
                     list.add(rdf);
                     userAdapter.setData(list);
@@ -141,15 +120,20 @@ public class SelectRoomFragment extends Fragment {
         cb_breakfast.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     txtbreakfast.setText("100");
-                    sum = sum.add(new BigDecimal(txtbreakfast.getText().toString()));
+                    txt_otherfacility.setText(cb_breakfast.getText().toString());
 
-                }else{
+                    price1 = Integer.parseInt(txt_roomprice.getText().toString());
+                    percent = Integer.parseInt(txt_roomtax.getText().toString());
+                    price2 = price1 * percent / 100;
+                    sum = sum.add(new BigDecimal(txtbreakfast.getText().toString()).add(new BigDecimal(price1).add(new BigDecimal(price2))));
+                    txttotal.setText(sum.toString());
+
+                } else {
                     txtbreakfast.setText("0");
                     sum = sum.subtract(new BigDecimal(txtbreakfast.getText().toString()));
                 }
-
 
 
             }
@@ -158,16 +142,20 @@ public class SelectRoomFragment extends Fragment {
         cb_laundry.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     txtlaundry.setText("80");
-                    sum = sum.add(new BigDecimal(txtlaundry.getText().toString()));
+                    txt_otherfacility.setText(cb_laundry.getText().toString());
+                    price1 = Integer.parseInt(txt_roomprice.getText().toString());
+                    percent = Integer.parseInt(txt_roomtax.getText().toString());
+                    price2 = price1 * percent / 100;
+                    sum = sum.add(new BigDecimal(txtlaundry.getText().toString()).add(new BigDecimal(price1).add(new BigDecimal(price2))));
+                    txttotal.setText(sum.toString());
 
-                }else{
+                } else {
                     txtlaundry.setText("0");
                     sum = sum.subtract(new BigDecimal(txtlaundry.getText().toString()));
 
                 }
-
 
 
             }
@@ -176,15 +164,19 @@ public class SelectRoomFragment extends Fragment {
         cb_rentalcar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     txtrentalcar.setText("500");
-                    sum = sum.add(new BigDecimal(txtrentalcar.getText().toString()));
+                    txt_otherfacility.setText(cb_rentalcar.getText().toString());
+                    price1 = Integer.parseInt(txt_roomprice.getText().toString());
+                    percent = Integer.parseInt(txt_roomtax.getText().toString());
+                    price2 = price1 * percent / 100;
+                    sum = sum.add(new BigDecimal(txtrentalcar.getText().toString()).add(new BigDecimal(price1).add(new BigDecimal(price2))));
+                    txttotal.setText(sum.toString());
 
-                }else{
+                } else {
                     txtrentalcar.setText("0");
                     sum = sum.subtract(new BigDecimal(txtrentalcar.getText().toString()));
                 }
-
 
 
             }
@@ -193,84 +185,28 @@ public class SelectRoomFragment extends Fragment {
         cb_assistant.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     txtassistant.setText("200");
-                    sum = sum.add(new BigDecimal(txtassistant.getText().toString()));
+                    txt_otherfacility.setText(cb_assistant.getText().toString());
+                    price1 = Integer.parseInt(txt_roomprice.getText().toString());
+                    percent = Integer.parseInt(txt_roomtax.getText().toString());
+                    price2 = price1 * percent / 100;
+                    sum = sum.add(new BigDecimal(txtassistant.getText().toString()).add(new BigDecimal(price1).add(new BigDecimal(price2))));
+                    txttotal.setText(sum.toString());
 
 
-
-                }else{
+                } else {
                     txtassistant.setText("0");
                     sum = sum.subtract(new BigDecimal(txtassistant.getText().toString()));
                 }
 
 
-
             }
         });
 
 
 
 
-        btn_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int price1 = Integer.parseInt(txtroom_price.getText().toString());
-                int percent = Integer.parseInt(txtroom_tax.getText().toString());
-                int price2 = price1 * percent / 100;
-
-                BigDecimal total = sum.add(new BigDecimal(price1)).add(new BigDecimal(price2));
-                txttotal.setText(total.toString());
-
-
-
-            }
-        });
-
-        btn_applypromo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                double discount1=0;
-                double discount2=0;
-                double discount3=0;
-                int selectedId1 = radiogrouppromo1.getCheckedRadioButtonId();
-                RadioButton selectedRadioButton1 = view.findViewById(selectedId1);
-
-                int selectedId2 = radiogrouppromo2.getCheckedRadioButtonId();
-                RadioButton selectedRadioButton2 = view.findViewById(selectedId2);
-
-                int selectedId3 = radiogrouppromo3.getCheckedRadioButtonId();
-                RadioButton selectedRadioButton3 = view.findViewById(selectedId3);
-
-                String totalamount = txttotal.getText().toString();
-                double Totalamt = Double.parseDouble(totalamount);
-                if(selectedId1!=-1) {
-
-
-                    if (selectedRadioButton1.getId() == R.id.btn_radio1) {
-                        String discountPercentageString = txtpromo1.getText().toString();
-                        discount1 = Double.parseDouble(discountPercentageString);
-                    }
-                }
-                if(selectedId2!=-1) {
-                    if (selectedRadioButton2.getId() == R.id.btn_radio2) {
-                        String discountPercentageString = txtpromo2.getText().toString();
-                        discount2 = Double.parseDouble(discountPercentageString);
-                    }
-                }
-
-                if(selectedId3!=-1) {
-                    if (selectedRadioButton3.getId() == R.id.btn_radio3) {
-                        String discountPercentageString = txtpromo3.getText().toString();
-                        discount3 = Double.parseDouble(discountPercentageString);
-                    }
-                }
-
-                double netAmount = Totalamt - (Totalamt * (discount1 + discount2 + discount3) / 100);
-
-                txtnettotal.setText(String.valueOf(netAmount));
-            }
-        });
 
 
         userAdapter.setOnRadioButtonSelectedListener(new UserAdapter.OnRadioButtonSelectedListener() {
@@ -278,98 +214,57 @@ public class SelectRoomFragment extends Fragment {
             public void onRadioButtonSelected(int position) {
                 RoomTypefir rdf = list.get(position);
                 String selectText = rdf.getRoom();
+                txt_roomtype.setText(selectText);
                 Toast.makeText(getContext(), "Selected: " + selectText, Toast.LENGTH_SHORT).show();
             }
         });
 
-        btn_booknow.setOnClickListener(new View.OnClickListener() {
+        btn_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              Bundle bundle2 = new Bundle();
+                Bundle bundle2 = new Bundle();
 
-              Bundle bundle = getArguments();
-              if(bundle!=null){
-                 String checkindate = bundle.getString("checkindate");
-                  String checkoutdate = bundle.getString("checkoutdate");
-                  int room1= bundle.getInt("room1");
-                  int adult1=bundle.getInt("adult1");
-                  int child1=bundle.getInt("child1");
-                  String firstname = bundle.getString("fname");
-                  String lasttname = bundle.getString("lname");
-                  String email = bundle.getString("email");
-                  String address = bundle.getString("address");
-                  String phone = bundle.getString("phone");
+                Bundle bundle = getArguments();
+                if (bundle != null) {
+                    String checkindate = bundle.getString("checkin");
+                    String checkoutdate = bundle.getString("checkout");
+                    int room1 = bundle.getInt("rooms",0);
+                    int adult1 = bundle.getInt("adults",0);
+                    int child1 = bundle.getInt("childs",0);
 
-                  bundle2.putString("checkindate1", checkindate);
-                  bundle2.putString("checkoutdate1", checkoutdate);
-                  bundle2.putInt("room2", room1);
-                  bundle2.putInt("adult2", adult1);
-                  bundle2.putInt("child2", child1);
-                  bundle2.putString("firstname", firstname);
-                  bundle2.putString("lastname", lasttname);
-                  bundle2.putString("email1", email);
-                  bundle2.putString("address1", address);
-                  bundle2.putString("phone1", phone);
-              }
-
-
-
-                int selectedid1 = radiogrouppromo1.getCheckedRadioButtonId();
-                RadioButton selectedradio1 = view.findViewById(selectedid1);
-
-                int selectedid2 = radiogrouppromo2.getCheckedRadioButtonId();
-                RadioButton selectedradio2 = view.findViewById(selectedid2);
-
-                int selectedid3 = radiogrouppromo3.getCheckedRadioButtonId();
-                RadioButton selectedradio3 = view.findViewById(selectedid3);
-
-                String selectedradiobuttontext = "";
-                String selecteddiscount = "";
-
-
-
-                if(selectedid1!=-1){
-
-                    if(selectedradio1.getId() == R.id.btn_radio1){
-                        selectedradiobuttontext = selectedradio1.getText().toString();
-                        selecteddiscount = txtpromo1.getText().toString();
-
+                    if(checkindate==null && checkoutdate==null && room1==0 && adult1==0 && child1==0){
+                        Toast.makeText(getActivity(), "value is null", Toast.LENGTH_SHORT).show();
                     }
+                    bundle2.putString("checkindate1", checkindate);
+                    bundle2.putString("checkoutdate1", checkoutdate);
+                    bundle2.putInt("room1", room1);
+                    bundle2.putInt("adult1", adult1);
+                    bundle2.putInt("child1", child1);
+
+
+
+
                 }
 
-                if(selectedid2!=-1){
 
-                    if(selectedradio2.getId() == R.id.btn_radio2){
-                         selectedradiobuttontext = selectedradio2.getText().toString();
-                        selecteddiscount = txtpromo2.getText().toString();
 
-                    }
-                }
 
-                if(selectedid3!=-1){
 
-                    if(selectedradio3.getId() == R.id.btn_radio3){
-                        selectedradiobuttontext = selectedradio3.getText().toString();
-                        selecteddiscount = txtpromo3.getText().toString();
-
-                    }
-                }
-
-                String selectedcheckboxtext="";
+                String selectedcheckboxtext = "";
                 String selectedextracharge = "";
-                if(cb_breakfast.isChecked()){
+                if (cb_breakfast.isChecked()) {
                     selectedcheckboxtext = cb_breakfast.getText().toString();
                     selectedextracharge = txtbreakfast.getText().toString();
                 }
-                if(cb_laundry.isChecked()){
+                if (cb_laundry.isChecked()) {
                     selectedcheckboxtext = cb_laundry.getText().toString();
                     selectedextracharge = txtlaundry.getText().toString();
                 }
-                if(cb_rentalcar.isChecked()){
+                if (cb_rentalcar.isChecked()) {
                     selectedcheckboxtext = cb_rentalcar.getText().toString();
                     selectedextracharge = txtrentalcar.getText().toString();
                 }
-                if(cb_assistant.isChecked()){
+                if (cb_assistant.isChecked()) {
                     selectedcheckboxtext = cb_assistant.getText().toString();
                     selectedextracharge = txtassistant.getText().toString();
                 }
@@ -378,24 +273,30 @@ public class SelectRoomFragment extends Fragment {
                 if (selectedPosition != -1) {
                     RoomTypefir rdf = list.get(selectedPosition);
                     String selectedradiotext = rdf.getRoom();
+                    String roomprice = txt_roomprice.getText().toString();
+                    String roomtax = txt_roomtax.getText().toString();
                     bundle2.putString("selectedradiotext", selectedradiotext);
+                    bundle2.putString("roomprice", roomprice);
+                    bundle2.putString("roomtax", roomtax);
                 } else {
                     Toast.makeText(getContext(), "Please select an option", Toast.LENGTH_SHORT).show();
                 }
 
-               String netamt= txtnettotal.getText().toString();
+                String total = txttotal.getText().toString();
 
 
-                bundle2.putString("selectedRadiobutton", selectedradiobuttontext);
-                bundle2.putString("selecteddiscount", selecteddiscount);
                 bundle2.putString("selectedcheckbox", selectedcheckboxtext);
                 bundle2.putString("selectedextracharge", selectedextracharge);
-                bundle2.putString("netamount", netamt);
-                ConfirmdetailFragment confirmdetailFragment = new ConfirmdetailFragment();
-                confirmdetailFragment.setArguments(bundle2);
+                bundle2.putString("total", total);
+                ContactFragment contactFragment = new ContactFragment();
+                contactFragment.setArguments(bundle2);
+
+                TabLayout tabLayout = getActivity().findViewById(R.id.tablayout);
+                tabLayout.getTabAt(2).select();
+
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.framelayout, confirmdetailFragment);
+                fragmentTransaction.replace(R.id.framelayout, contactFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
@@ -403,33 +304,6 @@ public class SelectRoomFragment extends Fragment {
 
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         return view;
@@ -441,13 +315,12 @@ public class SelectRoomFragment extends Fragment {
     }
 
 
-    public void setTextToSecondTextView(String rprice, String rtax){
-        if( txtroom_price != null && txtroom_tax != null) {
-            txtroom_price.setText(rprice);
-            txtroom_tax.setText(rtax);
+    public void setTextToSecondTextView(String rprice, String rtax) {
+        if (txt_roomprice != null && txt_roomtax != null) {
+            txt_roomprice.setText(rprice);
+            txt_roomtax.setText(rtax);
         }
     }
-
 
 
 }
