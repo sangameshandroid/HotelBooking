@@ -81,6 +81,15 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Extra Facilty"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:paddingTop="10dp"
+            android:id="@+id/btnextrafacilty"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Bookings(Datevise)"
             android:textSize="18sp"
             android:textColor="@color/white"

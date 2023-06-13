@@ -54,7 +54,7 @@ public class BookingActivity extends AppCompatActivity {
         final int month = calender.get(Calendar.MONTH);
         final int day = calender.get(Calendar.DAY_OF_MONTH);
 
-        DatabaseReference bookingref = FirebaseDatabase.getInstance().getReference("UserData");
+        DatabaseReference bookingref = FirebaseDatabase.getInstance().getReference("UserData2");
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy", Locale.getDefault());
 
@@ -140,11 +140,11 @@ public class BookingActivity extends AppCompatActivity {
                 query.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        List<UserData> filteredBookings = new ArrayList<>();
+                        List<UserData2> filteredBookings = new ArrayList<>();
                         for (DataSnapshot bookingSnapshot : snapshot.getChildren()) {
-                            UserData userData = bookingSnapshot.getValue(UserData.class);
-                            if (userData != null) {
-                                filteredBookings.add(userData);
+                            UserData2 userData2 = bookingSnapshot.getValue(UserData2.class);
+                            if (userData2 != null) {
+                                filteredBookings.add(userData2);
 
                             }
 

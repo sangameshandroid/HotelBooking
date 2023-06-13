@@ -52,8 +52,6 @@ public class RoomManagement extends AppCompatActivity{
         edcost = findViewById(R.id.editcost);
         edtax = findViewById(R.id.edittax);
         btnadd = findViewById(R.id.btnadd);
-        btnupdate = findViewById(R.id.btnupdate);
-        btndelete = findViewById(R.id.btndelete);
         roomrecycler = findViewById(R.id.roomrecycler);
 
         db = FirebaseDatabase.getInstance().getReference("RoomDatabase");
@@ -107,6 +105,7 @@ public class RoomManagement extends AppCompatActivity{
                           }
                       }
                     }
+
                 }
         );
 
@@ -125,6 +124,8 @@ public class RoomManagement extends AppCompatActivity{
                 for (DataSnapshot ds:snapshot.getChildren()
                      ) {
                     rdf= ds.getValue(RoomTypefir.class);
+
+
                     rdf.setKey(ds.getKey());
                     list.add(rdf);
 

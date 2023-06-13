@@ -29,10 +29,10 @@ public  class FilterRoomActivity extends AppCompatActivity implements AdapterVie
     Spinner spinner_rooms;
     RecyclerView roomfilter_recycler;
     private BookingFilterAdapter bfd;
-    private List<UserData> filtereddata;
+    private List<UserData2> filtereddata;
     private String selectedRoom = "Standard";
     private DatabaseReference databaseReference;
-    private UserData userData;
+    private UserData2 userData2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public  class FilterRoomActivity extends AppCompatActivity implements AdapterVie
         spinner_rooms.setOnItemSelectedListener(this);
         spinner_rooms.setSelection(0);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("UserData");
+        databaseReference = FirebaseDatabase.getInstance().getReference("UserData2");
         filtereddata = new ArrayList<>();
         bfd = new BookingFilterAdapter(filtereddata);
         roomfilter_recycler.setAdapter(bfd);
@@ -61,16 +61,16 @@ public  class FilterRoomActivity extends AppCompatActivity implements AdapterVie
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         selectedRoom = parent.getItemAtPosition(position).toString();
 
-        Query query = databaseReference.orderByChild("roomtype").equalTo(selectedRoom);
+        Query query = databaseReference.orderByChild("room").equalTo(selectedRoom);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 filtereddata.clear();
                 for (DataSnapshot snap : snapshot.getChildren()) {
-                    userData = snap.getValue(UserData.class);
+                    userData2 = snap.getValue(UserData2.class);
 
-                    if (userData != null) {
-                        filtereddata.add(userData);
+                    if (userData2 != null) {
+                        filtereddata.add(userData2);
                     }
                 }
 

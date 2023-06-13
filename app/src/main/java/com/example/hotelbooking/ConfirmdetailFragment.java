@@ -41,19 +41,26 @@ public class ConfirmdetailFragment extends Fragment {
         edit_extrafacility = view.findViewById(R.id.edit_extrafacility);
         edit_roomtax = view.findViewById(R.id.edit_roomtax);
         btn_payment = view.findViewById(R.id.btn_payment);
+        edit_extrafacility.setEnabled(false);
+        edit_roomtax.setEnabled(false);
+        edit_roomprice.setEnabled(false);
+        edit_grandtotal.setEnabled(false);
+        edit_total.setEnabled(false);
+        edit_discountamt.setEnabled(false);
+        edit_discount.setEnabled(false);
 
 
         bundle = getArguments();
         if(bundle!=null) {
 
-            String selectedcheckbox = bundle.getString("selectedcheckbox");
+            String Extracharge = bundle.getString("extracharge");
             String total = bundle.getString("total");
-            String Roomprice = bundle.getString("roomPrice");
+            int Roomprice = bundle.getInt("roomPrice",0);
             String Roomtax = bundle.getString("roomTax");
 
-            edit_roomprice.setText(Roomprice);
+            edit_roomprice.setText(String.valueOf(Roomprice));
             edit_roomtax.setText(Roomtax);
-            edit_extrafacility.setText(selectedcheckbox);
+            edit_extrafacility.setText(Extracharge);
             edit_total.setText(total);
         }
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.PromoCodes, R.layout.spinner_codes);
@@ -101,7 +108,7 @@ public class ConfirmdetailFragment extends Fragment {
                 String selectedradio = bundle.getString("selectedradio");
                 String discount = edit_discount.getText().toString();
                 String promo = promospinner.getSelectedItem().toString();
-                String total = edit_total.getText().toString();
+                String total = edit_grandtotal.getText().toString();
                 String roomprice = edit_roomprice.getText().toString();
                 String tax = edit_roomtax.getText().toString();
 

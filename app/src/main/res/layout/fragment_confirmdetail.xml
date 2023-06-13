@@ -23,7 +23,7 @@
            <TextView
                android:layout_width="180dp"
                android:layout_height="wrap_content"
-               android:text="Room Price :"
+               android:text="Room Price(INR) :"
                android:textColor="#C9D6CF"
                android:textSize="16sp"
                android:padding="8dp"
@@ -34,7 +34,7 @@
                android:textSize="16sp"
                android:textColor="#C9D6CF"
                android:padding="5dp"
-               android:text="Room Tax :"
+               android:text="Room Tax(%) :"
                android:textStyle="bold"/>
 
        </LinearLayout>
@@ -72,7 +72,7 @@
            <TextView
                android:layout_width="180dp"
                android:layout_height="wrap_content"
-               android:text="Extra Facility :"
+               android:text="Extra Charge(INR) :"
                android:textColor="#C9D6CF"
                android:textSize="16sp"
                android:padding="8dp"
@@ -100,13 +100,14 @@
                android:padding="8dp"
                android:backgroundTint="#C9D6CF"
                />
+
            <Spinner
-               android:layout_width="150dp"
                android:id="@+id/promospinner"
+               android:layout_width="150dp"
                android:layout_height="wrap_content"
-               android:padding="8dp"
                android:layout_marginLeft="30dp"
-               />
+               android:background="@drawable/custom_spinner"
+               android:padding="8dp" />
 
 
 

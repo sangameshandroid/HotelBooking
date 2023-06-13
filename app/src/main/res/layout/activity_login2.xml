@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity2"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#C9D6CF">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:text="Hotel Booking Form"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        />
+    <ImageView
+        android:layout_width="340dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/hotelbooking"
+        android:layout_gravity="center"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#062639">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textColor="@color/custom_color"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"/>
+        <EditText
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_bg"
+            android:layout_gravity="center"
+            android:hint="Email"
+            android:id="@+id/edit_email"
+            android:layout_marginTop="15dp"
+            android:textSize="16sp"
+            android:textColor="@color/custom_color"
+            android:textColorHint="#6C757D"
+            android:padding="10dp"/>
+        <EditText
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_bg"
+            android:layout_gravity="center"
+            android:hint="Password"
+            android:id="@+id/edit_password"
+            android:drawableRight="@drawable/ic_baseline_visibility_off_24"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:textColor="@color/custom_color"
+            android:textColorHint="#6C757D"
+            android:padding="10dp"/>
+
+
+        <ProgressBar
+            android:layout_width="340dp"
+            android:layout_height="5dp"
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:id="@+id/progressbar"
+            android:indeterminate="true"
+            android:indeterminateTintMode="src_in"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/custom_color"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:progress="20"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:id="@+id/btn_Login"
+            android:text="Login"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="@drawable/login_bb"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="New User? Sign Up"
+            android:textSize="14sp"
+            android:textColor="@color/custom_color"
+            android:layout_marginTop="5dp"
+            android:id="@+id/txt_signup"/>
+            </LinearLayout>
+
+
+</LinearLayout>

@@ -138,6 +138,7 @@ public class SignupActivity extends AppCompatActivity {
                             userRef.child("Firstname").setValue(firstname);
                             userRef.child("Lastname").setValue(lastname);
                             userRef.child("Phone").setValue(phone);
+
                             Intent intent = new Intent(SignupActivity.this, RegistermessageActivity.class);
                             startActivity(intent);
 

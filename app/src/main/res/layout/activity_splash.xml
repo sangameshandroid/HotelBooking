@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/customcheckmark"
+    android:orientation="vertical"
+    tools:context=".SplashActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:gravity="center
+"
+        android:layout_marginTop="220dp">
+
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="H"
+                android:layout_gravity="center"
+                android:background="@color/custom_color"
+
+                android:id="@+id/txt_title"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:textSize="34dp"
+                android:textColor="@color/customcheckmark"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium"
+                />
+
+
+
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:text="B"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/txt_slogan"
+            android:textColor="@color/custom_color"
+            android:textSize="34dp"
+
+            android:fontFamily="sans-serif-medium"/>
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text=".com"
+            android:gravity="bottom"
+            android:textSize="16sp"
+            android:textColor="@color/custom_color"
+            android:id="@+id/txt_name"
+            android:fontFamily="sans-serif-medium"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hotel Booking"
+        android:textColor="@color/custom_color"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:id="@+id/txt_subtitle"
+        android:layout_marginTop="400dp"/>
+
+</LinearLayout>

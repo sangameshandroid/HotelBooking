@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -19,7 +18,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -29,9 +27,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DateFragment extends Fragment {
-    EditText edcheckin, edcheckout, edbooking;
+    TextView   edbooking;
+    TextView edcheckin, edcheckout;
+
     TextView txtduration, txtnoofrooms, txtroonno, txtadultno, txtchildno, txtadult, txtchild;
     Button btnadd, btnsubtract, btnadd2, btnsubtract2, btnadd3, btnsubtract3, selectrooms;
     Calendar mycalender;
@@ -72,6 +74,8 @@ public class DateFragment extends Fragment {
         btnsubtract3 = view.findViewById(R.id.btnsubtract3);
         selectrooms = view.findViewById(R.id.selectRooms);
         edbooking = view.findViewById(R.id.edbooking);
+        edbooking.setFocusable(false);
+        edbooking.setEnabled(false);
         txtroonno.setText("0");
         txtadultno.setText("0");
         txtchildno.setText("0");
@@ -98,6 +102,7 @@ public class DateFragment extends Fragment {
                                 // Set the selected date in the EditText
                                 String bookingDate = String.format("%02d/%02d/%04d", dayOfMonth, month+1, year);
                                 edbooking.setText(bookingDate);
+
                             }
                         }, year, month, day);
                 datePickerDialog.show();
@@ -111,9 +116,9 @@ public class DateFragment extends Fragment {
             @Override
           public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+              calendar.setTimeInMillis(System.currentTimeMillis());
+              DatePicker datePicker = new DatePicker(getContext());
+              datePicker.setMinDate(calendar.getTimeInMillis());
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
                         new DatePickerDialog.OnDateSetListener() {
@@ -123,7 +128,14 @@ public class DateFragment extends Fragment {
                                 String checkinDate = String.format("%02d/%02d/%04d", dayOfMonth, month+1, year);
                                 edcheckin.setText(checkinDate);
                             }
-                        }, year, month, day);
+                        },     calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH));
+
+                datePickerDialog.getDatePicker().setCalendarViewShown(false);
+                datePickerDialog.getDatePicker().setSpinnersShown(true);
+                datePickerDialog.getDatePicker().init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), null);
+                datePickerDialog.getDatePicker().setMinDate(datePicker.getMinDate());
                 datePickerDialog.show();
                                          }
                                      });
@@ -135,9 +147,10 @@ public class DateFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                calendar.setTimeInMillis(System.currentTimeMillis());
+
+                DatePicker datePicker = new DatePicker(getContext());
+                datePicker.setMinDate(calendar.getTimeInMillis());
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
                         new DatePickerDialog.OnDateSetListener() {
@@ -147,7 +160,17 @@ public class DateFragment extends Fragment {
                                 String checkoutDate = String.format("%02d/%02d/%04d", dayOfMonth, month+1, year);
                                 edcheckout.setText(checkoutDate);
                             }
-                        }, year, month, day);
+                        }, calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH),
+                                calendar.get(Calendar.DAY_OF_MONTH));
+
+                datePickerDialog.getDatePicker().setCalendarViewShown(false);
+                datePickerDialog.getDatePicker().setSpinnersShown(true);
+                datePickerDialog.getDatePicker().init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), null);
+                datePickerDialog.getDatePicker().setMinDate(datePicker.getMinDate());
+                datePickerDialog.show();
+
+
                 datePickerDialog.show();
             }
         });
@@ -169,12 +192,20 @@ public class DateFragment extends Fragment {
                 String dateStr1 = edcheckin.getText().toString();
                 String dateStr2 = edcheckout.getText().toString();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+
                 try {
                     Date date1 = sdf.parse(dateStr1);
                     Date date2 = sdf.parse(dateStr2);
-                    long diffInMs = date2.getTime() - date1.getTime();
-                    long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMs);
-                    txtduration.setText(diffInDays + " nights");
+                    if(date1.equals(date2)){
+                        txtduration.setText("1" + " night");
+                    }else{
+                        long diffInMs = date2.getTime() - date1.getTime();
+                        long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMs);
+                        txtduration.setText(diffInDays + " nights");
+
+                    }
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -260,19 +291,28 @@ public class DateFragment extends Fragment {
                 String checkin = edcheckin.getText().toString();
                 String checkout = edcheckout.getText().toString();
                 String booking = edbooking.getText().toString();
+
+
+                int duration = 0;
+                String str = txtduration.getText().toString();
+                Pattern pattern = Pattern.compile("\\d+");
+                Matcher matcher = pattern.matcher(str);
+                if(matcher.find()){
+                    duration = Integer.parseInt(matcher.group());
+                }
+
                 int rooms = Integer.parseInt(txtroonno.getText().toString());
                 int adults = Integer.parseInt(txtadultno.getText().toString());
                 int childs = Integer.parseInt(txtchildno.getText().toString());
 
-                if(checkin == null && checkout==null && rooms==0 && adults==0 && childs==0){
-                    Toast.makeText(getActivity(), "value is null", Toast.LENGTH_SHORT).show();
-                }
+
 
                 Bundle bundle = new Bundle();
                 bundle.putString("checkin", checkin);
                 bundle.putString("checkout", checkout);
                 bundle.putInt("rooms", rooms);
                 bundle.putInt("adults", adults);
+                bundle.putInt("duration", duration);
                 bundle.putInt("childs", childs);
 
 
@@ -303,6 +343,8 @@ public class DateFragment extends Fragment {
         return view;
 
     }
+
+   
 
    /* private boolean validFields(String checkin, String checkout, String booking) {
         if (checkin.length()==0){

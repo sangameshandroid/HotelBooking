@@ -3,19 +3,25 @@ package com.example.hotelbooking;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 public class ThankuActivity extends AppCompatActivity {
     private Button btn_paynow;
-    EditText editcardno, editcvv, editcardname, editexpiry;
+    EditText editcardno, editcvv, editcardname;
+    TextView editexpiry;
     private DatabaseReference db;
     private UserData2 ud2;
 
@@ -34,6 +40,27 @@ public class ThankuActivity extends AppCompatActivity {
 
 
          db = FirebaseDatabase.getInstance().getReference("UserData2");
+
+         editexpiry.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Calendar calendar = Calendar.getInstance();
+                 int year = calendar.get(Calendar.YEAR);
+                 int month = calendar.get(Calendar.MONTH);
+                 int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                 DatePickerDialog datePickerDialog = new DatePickerDialog(ThankuActivity.this,
+                         new DatePickerDialog.OnDateSetListener() {
+                             @Override
+                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                 // Set the selected date in the EditText
+                                 String expiryDate = String.format("%02d/%02d/%04d", dayOfMonth, month+1, year);
+                                 editexpiry.setText(expiryDate);
+                             }
+                         }, year, month, day);
+                 datePickerDialog.show();
+             }
+         });
 
         //btn_exit = findViewById(R.id.btn_exit);
         //btn_logout = findViewById(R.id.btn_logout);
@@ -77,11 +104,6 @@ public class ThankuActivity extends AppCompatActivity {
                 String Promo =intent.getStringExtra("promo");
                 String roomprice = intent.getStringExtra("roomprice");
                 String roomtax = intent.getStringExtra("tax");
-                if(Indate==null && Outdate==null && Roomno==0 && Adultno==0 && Childno==0){
-                    Toast.makeText(ThankuActivity.this, "value is null", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(ThankuActivity.this, "has Value", Toast.LENGTH_SHORT).show();
-                }
 
 
            /*     String cardno = editcardno.getText().toString();

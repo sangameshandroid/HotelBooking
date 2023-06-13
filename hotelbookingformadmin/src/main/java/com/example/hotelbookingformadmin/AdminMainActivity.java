@@ -26,7 +26,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class AdminMainActivity extends AppCompatActivity {
-Button btnroom, btnpromo, btn_Bookings, btn_Bookingrooms, btn_Bookingname;
+Button btnroom, btnpromo, btn_Bookings, btn_Bookingrooms, btn_Bookingname, btn_extrafacility;
 TextView txt_useremail, txt_logout;
 
     @SuppressLint("MissingInflatedId")
@@ -41,6 +41,7 @@ TextView txt_useremail, txt_logout;
        btn_Bookingname = findViewById(R.id.btn_Bookingname);
        txt_useremail = findViewById(R.id.txt_useremail);
        txt_logout = findViewById(R.id.txt_logout);
+       btn_extrafacility = findViewById(R.id.btnextrafacilty);
 
 
        Intent intentlog = getIntent();
@@ -63,6 +64,19 @@ TextView txt_useremail, txt_logout;
                        }) .setNegativeButton("No", null).show();
            }
        });
+
+       btn_extrafacility.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(AdminMainActivity.this, ExtraFaciltyActivity.class);
+               startActivity(intent);
+
+           }
+       });
+
+
+
+
        btnroom.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {

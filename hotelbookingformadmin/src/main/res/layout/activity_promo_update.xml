@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PromoUpdateActivity"
+    android:padding="20dp"
+    android:orientation="vertical">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Promo id"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:id="@+id/edit_Promoid"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Promo Code"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:id="@+id/edit_Promocode"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Discount(%)"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:id="@+id/edit_Promodiscount"/>
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:text="update"
+        android:id="@+id/btn_update"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:text="Delete"
+        android:id="@+id/btn_delete"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>

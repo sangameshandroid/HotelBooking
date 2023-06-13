@@ -37,7 +37,7 @@
                 android:textAlignment="center"
                 android:padding="5dp"
                 android:textColor="@color/custom_color"/>
-            <EditText
+            <TextView
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:hint="dd/mm/yyyy"
@@ -52,32 +52,33 @@
         </LinearLayout>
 
 
-
         <LinearLayout
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="5dp">
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:text="Check-in"
                 android:textAlignment="center"
-                android:textSize="16sp"
-                android:padding="5dp"
-                android:textStyle="bold"
                 android:textColor="@color/custom_color"
-                 />
-            <EditText
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/edcheckin"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/custom_color"
                 android:hint="dd/mm/yyyy"
                 android:textAlignment="center"
-                android:textColorHint="#6C757D"
                 android:textColor="@color/custom_color"
-                android:backgroundTint="@color/custom_color"
-                android:textSize="15sp"
-                android:id="@+id/edcheckin"/>
+                android:textColorHint="#6C757D"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -95,7 +96,7 @@
                 android:textColor="@color/custom_color"
                 android:textSize="16sp"
                 />
-            <EditText
+            <TextView
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:hint="dd/mm/yyyy"
@@ -183,7 +184,7 @@
         <TextView
             android:layout_width="20dp"
             android:layout_height="25dp"
-            android:text="0"
+            android:text="1"
             android:id="@+id/txtroomno"
             android:textColor="@color/black"
             android:textAlignment="center"/>
@@ -218,7 +219,7 @@
                 android:id="@+id/txtadultno"
                 android:layout_width="20dp"
                 android:layout_height="25dp"
-                android:text="0"
+                android:text="1"
                 android:textAlignment="center"
                 android:textColor="#000000" />
 

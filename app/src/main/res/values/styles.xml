@@ -16,5 +16,8 @@
         <item name="android:textColor">@color/custom_color</item>
         <item name="android:background">@drawable/spinner_background</item>
     </style>
+    <style name="ProgressTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlActivated">@color/custom_color </item>
+    </style>
 
 </resources>

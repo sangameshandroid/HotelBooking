@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,27 +60,28 @@ public class ContactFragment extends Fragment {
 
 
 
+
+
                     if(bundle!=null){
                         String checkin = bundle.getString("checkindate1");
                         String checkout=bundle.getString("checkoutdate1");
                         int room= bundle.getInt("room1",0);
                         int adult=bundle.getInt("adult1",0);
                         int child=bundle.getInt("child1",0);
-                        String roomPrice = bundle.getString("roomprice");
+                        int roomPrice = bundle.getInt("netRoomPrice", 0);
                         String selectedradio = bundle.getString("selectedradiotext");
-                        String selectedcheckbox = bundle.getString("selectedcheckbox");
+
                         String total = bundle.getString("total");
                         String roomTax = bundle.getString("roomtax");
-                        String extracharge = bundle.getString("selectedextracharge");
+                        String extracharge = bundle.getString("otherprice");
 
                         if(checkin==null && checkout==null && room==0 && adult==0 && child==0){
                             Toast.makeText(getActivity(), "value is null", Toast.LENGTH_SHORT).show();
                         }
                         sendDataBundle.putString("extracharge", extracharge);
                         sendDataBundle.putString("roomTax", roomTax);
-                        sendDataBundle.putString("roomPrice", roomPrice);
+                        sendDataBundle.putInt("roomPrice", roomPrice);
                         sendDataBundle.putString("selectedradio", selectedradio);
-                        sendDataBundle.putString("selectedcheckbox", selectedcheckbox);
                         sendDataBundle.putString("total", total);
                         sendDataBundle.putString("checkindate2", checkin);
                         sendDataBundle.putString("checkoutdate2", checkout);
@@ -129,38 +129,9 @@ public class ContactFragment extends Fragment {
         return view;
     }
 
-    /*private boolean validinfo(String fname, String lname, String email, String address, String phone, String postcode) {
-        if (fname.length()==0){
-            editfirstname.requestFocus();
-            editfirstname.setError("Enter in the field");
-            return false;
-        } else if (lname.length()==0){
-            editlastname.requestFocus();
-            editlastname.setError("Enter in the field");
-            return false;
-        } else if (email.length()==0){
-            editemail.requestFocus();
-            editemail.setError("Enter in the field");
-            return false;
-        } else if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")){
-            editemail.requestFocus();
-            editemail.setError("Enter Valid Email");
-            return  false;
-        } else if (address.length()==0){
-            editaddress.requestFocus();
-            editaddress.setError("Enter in the Field");
-            return false;
-        } else if (postcode.length()<6){
-            editpostcode.requestFocus();
-            editpostcode.setError("Enter Valid Email");
-            return false;
-        } else if (phone.length()<10){
-            editphone.requestFocus();
-            editphone.setError("Enter Valid Mobile Number");
-            return false;
-        }
-        return true;
-    }*/
+
+
+
 
 
 }

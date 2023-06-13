@@ -1,14 +1,20 @@
 package com.example.hotelbooking;
 
+import static java.lang.Integer.parseInt;
+import static java.lang.Integer.toBinaryString;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -54,9 +60,13 @@ public class SelectRoomFragment extends Fragment {
     TextView txttotal, txt_otherfacility;
     Button btn_details;
     CheckBox cb_breakfast, cb_laundry, cb_rentalcar, cb_assistant;
-    BigDecimal sum = BigDecimal.ZERO;
-    BigDecimal total = BigDecimal.ZERO;
-    int price1 = 0, price2=0, percent = 0;
+    private boolean[] initialCheckBoxState = {false, false, false, false};
+    int otherprice = 0;
+    int total = 0;
+    int bigtotal = 0;
+    int roomprice = 0;
+    int Duration =0;
+    Bundle bundle;
 
 
     @Override
@@ -89,6 +99,20 @@ public class SelectRoomFragment extends Fragment {
         txtassistant = view.findViewById(R.id.txtassistant);
         txttotal = view.findViewById(R.id.txttotal);
 
+        cb_breakfast.setCompoundDrawablePadding(3);
+        cb_laundry.setCompoundDrawablePadding(3);
+        cb_rentalcar.setCompoundDrawablePadding(3);
+        cb_assistant.setCompoundDrawablePadding(3);
+        txtbreakfast.setText("100");
+        txtlaundry.setText("80");
+        txtrentalcar.setText("500");
+        txtassistant.setText("200");
+        bundle = getArguments();
+        if(bundle!=null) {
+            Duration = bundle.getInt("duration", 0);
+        }
+
+
 
 
 
@@ -120,20 +144,36 @@ public class SelectRoomFragment extends Fragment {
         cb_breakfast.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                roomprice = getSum();
                 if (isChecked) {
-                    txtbreakfast.setText("100");
-                    txt_otherfacility.setText(cb_breakfast.getText().toString());
+                    if(userAdapter.getSelectedposition()!= -1){
 
-                    price1 = Integer.parseInt(txt_roomprice.getText().toString());
-                    percent = Integer.parseInt(txt_roomtax.getText().toString());
-                    price2 = price1 * percent / 100;
-                    sum = sum.add(new BigDecimal(txtbreakfast.getText().toString()).add(new BigDecimal(price1).add(new BigDecimal(price2))));
-                    txttotal.setText(sum.toString());
+
+                     otherprice += Integer.parseInt(txtbreakfast.getText().toString());
+                     total  += Duration * Integer.parseInt(txtbreakfast.getText().toString());
+                        Drawable checkmark = ContextCompat.getDrawable(getContext(), R.drawable.ic_baseline_check_24);
+                        checkmark.setTint(getResources().getColor(R.color.custom_color));
+                        cb_breakfast.setButtonDrawable(checkmark);
+
+                    }
+                    else{
+                        Toast.makeText(getContext(), "Please select Room", Toast.LENGTH_SHORT).show();
+                        cb_breakfast.setChecked(false);
+                        cb_breakfast.setButtonDrawable(R.drawable.custom_checkbox);
+                    }
+
 
                 } else {
-                    txtbreakfast.setText("0");
-                    sum = sum.subtract(new BigDecimal(txtbreakfast.getText().toString()));
+                  otherprice -= Integer.parseInt(txtbreakfast.getText().toString());
+                  total -= Duration*Integer.parseInt(txtbreakfast.getText().toString());
+
+                    cb_breakfast.setButtonDrawable(R.drawable.custom_checkbox);
+                    cb_breakfast.setChecked(false);
                 }
+                bigtotal = roomprice+total;
+                txt_otherfacility.setText(String.valueOf(otherprice));
+                txttotal.setText(String.valueOf(bigtotal));
+
 
 
             }
@@ -142,20 +182,40 @@ public class SelectRoomFragment extends Fragment {
         cb_laundry.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                roomprice = getSum();
                 if (isChecked) {
-                    txtlaundry.setText("80");
-                    txt_otherfacility.setText(cb_laundry.getText().toString());
-                    price1 = Integer.parseInt(txt_roomprice.getText().toString());
-                    percent = Integer.parseInt(txt_roomtax.getText().toString());
-                    price2 = price1 * percent / 100;
-                    sum = sum.add(new BigDecimal(txtlaundry.getText().toString()).add(new BigDecimal(price1).add(new BigDecimal(price2))));
-                    txttotal.setText(sum.toString());
+                    if(userAdapter.getSelectedposition()!= -1){
+
+                   otherprice += Integer.parseInt(txtlaundry.getText().toString());
+                   total += Duration*Integer.parseInt(txtlaundry.getText().toString());
+                        Drawable checkmark2 = ContextCompat.getDrawable(getContext(), R.drawable.ic_baseline_check_24);
+                        checkmark2.setTint(getResources().getColor(R.color.custom_color));
+                        cb_laundry.setButtonDrawable(checkmark2);
+
+                    }
+                    else{
+                        Toast.makeText(getContext(), "Please select Room", Toast.LENGTH_SHORT).show();
+                        cb_laundry.setChecked(false);
+                        cb_laundry.setButtonDrawable(R.drawable.custom_checkbox);
+                    }
+
+
+
+
 
                 } else {
-                    txtlaundry.setText("0");
-                    sum = sum.subtract(new BigDecimal(txtlaundry.getText().toString()));
+                   otherprice -= Integer.parseInt(txtlaundry.getText().toString());
+                   total -= Duration*Integer.parseInt(txtlaundry.getText().toString());
+
+                    cb_laundry.setButtonDrawable(R.drawable.custom_checkbox);
+                    cb_laundry.setChecked(false);
+
 
                 }
+                bigtotal = roomprice+total;
+                txt_otherfacility.setText(String.valueOf(otherprice));
+                txttotal.setText(String.valueOf(bigtotal));
+
 
 
             }
@@ -164,19 +224,36 @@ public class SelectRoomFragment extends Fragment {
         cb_rentalcar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                roomprice = getSum();
                 if (isChecked) {
-                    txtrentalcar.setText("500");
-                    txt_otherfacility.setText(cb_rentalcar.getText().toString());
-                    price1 = Integer.parseInt(txt_roomprice.getText().toString());
-                    percent = Integer.parseInt(txt_roomtax.getText().toString());
-                    price2 = price1 * percent / 100;
-                    sum = sum.add(new BigDecimal(txtrentalcar.getText().toString()).add(new BigDecimal(price1).add(new BigDecimal(price2))));
-                    txttotal.setText(sum.toString());
+                    if(userAdapter.getSelectedposition()!= -1){
+
+                     otherprice += Integer.parseInt(txtrentalcar.getText().toString());
+                     total += Duration* Integer.parseInt(txtrentalcar.getText().toString());
+                        Drawable checkmark3 = ContextCompat.getDrawable(getContext(), R.drawable.ic_baseline_check_24);
+                        checkmark3.setTint(getResources().getColor( R.color.custom_color));
+                        cb_rentalcar.setButtonDrawable(checkmark3);
+
+                    }
+                    else{
+                        Toast.makeText(getContext(), "Please select Room", Toast.LENGTH_SHORT).show();
+                        cb_rentalcar.setChecked(false);
+                        cb_rentalcar.setButtonDrawable(R.drawable.custom_checkbox);
+                    }
+
+
 
                 } else {
-                    txtrentalcar.setText("0");
-                    sum = sum.subtract(new BigDecimal(txtrentalcar.getText().toString()));
+                  otherprice -=  Integer.parseInt(txtrentalcar.getText().toString());
+                  total -= Duration* Integer.parseInt(txtrentalcar.getText().toString());
+
+                    cb_rentalcar.setButtonDrawable(R.drawable.custom_checkbox);
+                    cb_rentalcar.setChecked(false);
                 }
+                bigtotal = roomprice+total;
+                txt_otherfacility.setText(String.valueOf(otherprice));
+                txttotal.setText(String.valueOf(bigtotal));
+
 
 
             }
@@ -185,20 +262,38 @@ public class SelectRoomFragment extends Fragment {
         cb_assistant.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                roomprice = getSum();
                 if (isChecked) {
-                    txtassistant.setText("200");
-                    txt_otherfacility.setText(cb_assistant.getText().toString());
-                    price1 = Integer.parseInt(txt_roomprice.getText().toString());
-                    percent = Integer.parseInt(txt_roomtax.getText().toString());
-                    price2 = price1 * percent / 100;
-                    sum = sum.add(new BigDecimal(txtassistant.getText().toString()).add(new BigDecimal(price1).add(new BigDecimal(price2))));
-                    txttotal.setText(sum.toString());
+                    if(userAdapter.getSelectedposition()!= -1){
+
+                       otherprice += Integer.parseInt(txtassistant.getText().toString());
+                       total += Duration*Integer.parseInt(txtassistant.getText().toString());
+                        Drawable checkmark4 = ContextCompat.getDrawable(getContext(), R.drawable.ic_baseline_check_24);
+                        checkmark4.setTint(getResources().getColor(R.color.custom_color));
+                        cb_assistant.setButtonDrawable(checkmark4);
+
+                    }
+                    else{
+
+                        Toast.makeText(getContext(), "Please select Room", Toast.LENGTH_SHORT).show();
+                        cb_assistant.setChecked(false);
+                        cb_assistant.setButtonDrawable(R.drawable.custom_checkbox);
+                    }
+
+
 
 
                 } else {
-                    txtassistant.setText("0");
-                    sum = sum.subtract(new BigDecimal(txtassistant.getText().toString()));
+                  otherprice -= Integer.parseInt(txtassistant.getText().toString());
+                  total -= Duration*Integer.parseInt(txtassistant.getText().toString());
+
+                    cb_assistant.setButtonDrawable(R.drawable.custom_checkbox);
+                    cb_assistant.setChecked(false);
                 }
+                bigtotal = roomprice+total;
+                txt_otherfacility.setText(String.valueOf(otherprice));
+                txttotal.setText(String.valueOf(bigtotal));
+
 
 
             }
@@ -214,6 +309,13 @@ public class SelectRoomFragment extends Fragment {
             public void onRadioButtonSelected(int position) {
                 RoomTypefir rdf = list.get(position);
                 String selectText = rdf.getRoom();
+                int totalamt = 0;
+
+                if (position != -1){
+                    totalamt = getSum();
+                    txttotal.setText(String.valueOf(totalamt));
+
+                }
                 txt_roomtype.setText(selectText);
                 Toast.makeText(getContext(), "Selected: " + selectText, Toast.LENGTH_SHORT).show();
             }
@@ -224,13 +326,14 @@ public class SelectRoomFragment extends Fragment {
             public void onClick(View v) {
                 Bundle bundle2 = new Bundle();
 
-                Bundle bundle = getArguments();
+
                 if (bundle != null) {
                     String checkindate = bundle.getString("checkin");
                     String checkoutdate = bundle.getString("checkout");
                     int room1 = bundle.getInt("rooms",0);
                     int adult1 = bundle.getInt("adults",0);
                     int child1 = bundle.getInt("childs",0);
+
 
                     if(checkindate==null && checkoutdate==null && room1==0 && adult1==0 && child1==0){
                         Toast.makeText(getActivity(), "value is null", Toast.LENGTH_SHORT).show();
@@ -250,43 +353,26 @@ public class SelectRoomFragment extends Fragment {
 
 
 
-                String selectedcheckboxtext = "";
-                String selectedextracharge = "";
-                if (cb_breakfast.isChecked()) {
-                    selectedcheckboxtext = cb_breakfast.getText().toString();
-                    selectedextracharge = txtbreakfast.getText().toString();
-                }
-                if (cb_laundry.isChecked()) {
-                    selectedcheckboxtext = cb_laundry.getText().toString();
-                    selectedextracharge = txtlaundry.getText().toString();
-                }
-                if (cb_rentalcar.isChecked()) {
-                    selectedcheckboxtext = cb_rentalcar.getText().toString();
-                    selectedextracharge = txtrentalcar.getText().toString();
-                }
-                if (cb_assistant.isChecked()) {
-                    selectedcheckboxtext = cb_assistant.getText().toString();
-                    selectedextracharge = txtassistant.getText().toString();
-                }
 
                 int selectedPosition = userAdapter.getSelectedposition();
                 if (selectedPosition != -1) {
                     RoomTypefir rdf = list.get(selectedPosition);
                     String selectedradiotext = rdf.getRoom();
-                    String roomprice = txt_roomprice.getText().toString();
+                    int roomprice = parseInt(txt_roomprice.getText().toString());
+                    int netRoomPrice = roomprice*Duration;
                     String roomtax = txt_roomtax.getText().toString();
                     bundle2.putString("selectedradiotext", selectedradiotext);
-                    bundle2.putString("roomprice", roomprice);
+                    bundle2.putInt("netRoomPrice", netRoomPrice);
                     bundle2.putString("roomtax", roomtax);
                 } else {
                     Toast.makeText(getContext(), "Please select an option", Toast.LENGTH_SHORT).show();
                 }
 
                 String total = txttotal.getText().toString();
+                String otherprice = txt_otherfacility.getText().toString();
 
 
-                bundle2.putString("selectedcheckbox", selectedcheckboxtext);
-                bundle2.putString("selectedextracharge", selectedextracharge);
+                bundle2.putString("otherprice", otherprice);
                 bundle2.putString("total", total);
                 ContactFragment contactFragment = new ContactFragment();
                 contactFragment.setArguments(bundle2);
@@ -320,7 +406,102 @@ public class SelectRoomFragment extends Fragment {
             txt_roomprice.setText(rprice);
             txt_roomtax.setText(rtax);
         }
+
+
     }
 
+    public int getSum() {
+        int sum = 0;
+        if(txt_roomprice!=null){
+        int price1 = parseInt(txt_roomprice.getText().toString());
+        int netroomprice = Duration*price1;
+
+        int percent = parseInt(txt_roomtax.getText().toString());
+        int price2 = (netroomprice*percent)/100;
+        sum = netroomprice+price2;
+        }
+        return sum;
+    }
+
+    private void handleCheckBoxChecked(CheckBox checkBox) {
+        int[] checkedPrices = {Integer.parseInt(txtbreakfast.getText().toString()), Integer.parseInt(txtlaundry.getText().toString()), Integer.parseInt(txtrentalcar.getText().toString()), Integer.parseInt(txtassistant.getText().toString())};
+        int checkBoxPrice = getCheckBoxPrice(checkBox);
+        checkedPrices[getCheckBoxIndex(checkBox)] = checkBoxPrice;
+        otherprice += checkBoxPrice;
+        updateTotal();
+    }
+
+    private void handleCheckBoxUnchecked(CheckBox checkBox) {
+
+        int[] checkedPrices = {Integer.parseInt(txtbreakfast.getText().toString()), Integer.parseInt(txtlaundry.getText().toString()), Integer.parseInt(txtrentalcar.getText().toString()), Integer.parseInt(txtassistant.getText().toString())};
+        int checkBoxPrice = getCheckBoxPrice(checkBox);
+        checkedPrices[getCheckBoxIndex(checkBox)] = 0;
+        otherprice -= checkBoxPrice;
+        updateTotal();
+    }
+
+    private int getCheckBoxPrice(CheckBox checkBox) {
+        if (checkBox == cb_breakfast) {
+            return Integer.parseInt(txtbreakfast.getText().toString());
+        } else if (checkBox == cb_laundry) {
+            return Integer.parseInt(txtlaundry.getText().toString());
+        } else if (checkBox == cb_rentalcar) {
+            return Integer.parseInt(txtrentalcar.getText().toString());
+        } else if (checkBox == cb_assistant) {
+            return Integer.parseInt(txtassistant.getText().toString());
+        }
+        return 0;
+    }
+
+    private int getCheckBoxIndex(CheckBox checkBox) {
+        if (checkBox == cb_breakfast) {
+            return 0;
+        } else if (checkBox == cb_laundry) {
+            return 1;
+        } else if (checkBox == cb_rentalcar) {
+            return 2;
+        } else if (checkBox == cb_assistant) {
+            return 3;
+        }
+        return -1;
+    }
+
+    public void updateTotal(){
+        int[] checkedPrices = {Integer.parseInt(txtbreakfast.getText().toString()), Integer.parseInt(txtlaundry.getText().toString()), Integer.parseInt(txtrentalcar.getText().toString()), Integer.parseInt(txtassistant.getText().toString())};
+
+        int otherprice = getCheckedPricesSum();
+
+        if (cb_breakfast.isChecked()) {
+            total += checkedPrices[0] * Duration;
+        }
+        if (cb_laundry.isChecked()) {
+            total += checkedPrices[1] * Duration;
+        }
+        if (cb_rentalcar.isChecked()) {
+            total += checkedPrices[2] * Duration;
+        }
+        if (cb_assistant.isChecked()) {
+            total += checkedPrices[3] * Duration;
+        }
+
+        bigtotal = roomprice + total;
+        txt_otherfacility.setText(String.valueOf(otherprice));
+        txttotal.setText(String.valueOf(bigtotal));
+
+
+
+
+
+
+    }
+
+    private int getCheckedPricesSum() {
+        int[] checkedPrices = {Integer.parseInt(txtbreakfast.getText().toString()), Integer.parseInt(txtlaundry.getText().toString()), Integer.parseInt(txtrentalcar.getText().toString()), Integer.parseInt(txtassistant.getText().toString())};
+        int sum = 0;
+        for (int i = 0; i < checkedPrices.length; i++) {
+            sum += checkedPrices[i];
+        }
+        return sum;
+    }
 
 }

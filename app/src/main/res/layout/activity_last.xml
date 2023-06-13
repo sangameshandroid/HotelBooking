@@ -84,7 +84,7 @@
                             android:padding="5dp"
                             android:textColor="#000000"
                             android:textSize="16sp"
-                            android:textStyle="bold" />
+                            />
 
                     </LinearLayout>
 
@@ -116,7 +116,7 @@
                             android:padding="5dp"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold" />
+                             />
 
                     </LinearLayout>
 
@@ -149,7 +149,7 @@
                             android:padding="5dp"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold" />
+                            />
 
                     </LinearLayout>
 
@@ -182,7 +182,7 @@
                             android:padding="5dp"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold" />
+                            />
 
                     </LinearLayout>
 
@@ -215,7 +215,7 @@
                             android:padding="5dp"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold" />
+                            />
 
                     </LinearLayout>
 
@@ -247,7 +247,7 @@
                             android:id="@+id/txt_checkin"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold"/>
+                         />
 
                     </LinearLayout>
 
@@ -273,13 +273,12 @@
                             android:background="@color/black"/>
 
                         <TextView
-                            android:layout_width="190dp"
-                            android:layout_height="wrap_content"
-                            android:padding="5dp"
                             android:id="@+id/txt_checkout"
+                            android:layout_width="190dp"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
                             android:textColor="#000000"
-                            android:textSize="18sp"
-                            android:textStyle="bold"/>
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -311,7 +310,7 @@
                             android:id="@+id/txt_roomtype"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold"/>
+                            />
 
                     </LinearLayout>
                     <LinearLayout
@@ -342,7 +341,7 @@
                             android:id="@+id/txt_roomprice"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold"/>
+                            />
 
                     </LinearLayout>
                     <LinearLayout
@@ -373,7 +372,7 @@
                             android:id="@+id/txt_roomtax"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold"/>
+                           />
 
                     </LinearLayout>
 
@@ -406,7 +405,7 @@
                             android:id="@+id/txt_Roomno"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold"/>
+                           />
 
                     </LinearLayout>
                     <LinearLayout
@@ -437,7 +436,7 @@
                             android:id="@+id/txt_adults"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold"/>
+                            />
 
                     </LinearLayout>
                     <LinearLayout
@@ -468,7 +467,7 @@
                             android:id="@+id/txt_children"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold"/>
+                           />
 
                     </LinearLayout>
                     <LinearLayout
@@ -499,7 +498,7 @@
                             android:id="@+id/txt_promo"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold"/>
+                           />
 
                     </LinearLayout>
                     <LinearLayout
@@ -530,7 +529,7 @@
                             android:id="@+id/txt_discount"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold"/>
+                        />
 
                     </LinearLayout>
 
@@ -562,7 +561,7 @@
                             android:id="@+id/txt_extracharge"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold"/>
+                            />
 
                     </LinearLayout>
 
@@ -593,7 +592,7 @@
                             android:padding="5dp"
                             android:textColor="#000000"
                             android:textSize="18sp"
-                            android:textStyle="bold" />
+                            />
 
 
                     </LinearLayout>

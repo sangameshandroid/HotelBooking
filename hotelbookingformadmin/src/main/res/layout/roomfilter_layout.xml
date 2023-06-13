@@ -18,12 +18,58 @@
             android:orientation="vertical"
 
             >
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="First Name"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                />
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Last Name"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                />
+            <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Email"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+
+            />
 
             <TextView
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
+                android:text="Phone"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                />
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Address"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                />
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
                 android:text="RoomType"
+                android:layout_marginTop="25dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
 
@@ -58,14 +104,54 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="120dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:orientation="vertical"
             >
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:id="@+id/txt_fname"
+                android:textColor="#4D11B1"
+
+                />
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:id="@+id/txt_lname"
+                android:textColor="#4D11B1"
+
+                />
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:id="@+id/txt_email"
+                android:textColor="#4D11B1"
+
+                />
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:id="@+id/txt_phone"
+                android:textColor="#4D11B1"
+
+                />
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:textSize="18sp"
+                android:id="@+id/txt_address"
+                android:textColor="#4D11B1"
+
+                />
 
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:id="@+id/txt_rooms1"
@@ -74,7 +160,7 @@
                 />
 
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:id="@+id/txt_checkindate1"
@@ -82,7 +168,7 @@
                 />
 
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:id="@+id/txt_checkoutdate1"
@@ -90,7 +176,7 @@
                 />
 
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:id="@+id/txt_netpay1"
